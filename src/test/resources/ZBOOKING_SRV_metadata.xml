@@ -1,0 +1,1758 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+           xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZBOOKING_SRV" xml:lang="en" sap:schema-version="1"
+                xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="BOOKING" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                </Key>
+                <Property Name="DestinationBk" Type="ZBOOKING_SRV.DestinationBk" Nullable="false"/>
+                <Property Name="Originalvalues" Type="ZBOOKING_SRV.Originalvalues" Nullable="false"/>
+                <Property Name="Fullfilment" Type="ZBOOKING_SRV.Fullfilment" Nullable="false"/>
+                <Property Name="CustomerBk" Type="ZBOOKING_SRV.CustomerBk" Nullable="false"/>
+                <Property Name="MeasuresBk" Type="ZBOOKING_SRV.MeasuresBk" Nullable="false"/>
+                <Property Name="SalesBk" Type="ZBOOKING_SRV.SalesBk" Nullable="false"/>
+                <Property Name="Dates" Type="ZBOOKING_SRV.Dates" Nullable="false"/>
+                <Property Name="Changemanagement" Type="ZBOOKING_SRV.Changemanagement" Nullable="false"/>
+                <Property Name="Key" Type="ZBOOKING_SRV.Key" Nullable="false"/>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="BOOKING_EXTIDS" Relationship="ZBOOKING_SRV.BOOKING_TO_EXTIDS"
+                                    FromRole="FromRole_BOOKING_TO_EXTIDS" ToRole="ToRole_BOOKING_TO_EXTIDS"/>
+                <NavigationProperty Name="MESSAGES" Relationship="ZBOOKING_SRV.BOOKING_TO_MESSAGES"
+                                    FromRole="FromRole_BOOKING_TO_MESSAGES" ToRole="ToRole_BOOKING_TO_MESSAGES"/>
+                <NavigationProperty Name="MARKETINGACTIONS" Relationship="ZBOOKING_SRV.BOOKING_TO_MARKETINGACTIONS"
+                                    FromRole="FromRole_BOOKING_TO_MARKETINGACTIONS"
+                                    ToRole="ToRole_BOOKING_TO_MARKETINGACTIONS"/>
+                <NavigationProperty Name="ANCILLARIES" Relationship="ZBOOKING_SRV.BOOKING_TO_ANCILLERIES"
+                                    FromRole="FromRole_BOOKING_TO_ANCILLERIES" ToRole="ToRole_BOOKING_TO_ANCILLERIES"/>
+                <NavigationProperty Name="DETAILS" Relationship="ZBOOKING_SRV.BOOKING_TO_DETAILS"
+                                    FromRole="FromRole_BOOKING_TO_DETAILS" ToRole="ToRole_BOOKING_TO_DETAILS"/>
+                <NavigationProperty Name="OPTINS" Relationship="ZBOOKING_SRV.BOOKING_TO_OPTIN"
+                                    FromRole="FromRole_BOOKING_TO_OPTIN" ToRole="ToRole_BOOKING_TO_OPTIN"/>
+                <NavigationProperty Name="PERSREF" Relationship="ZBOOKING_SRV.BOOKING_TO_PERSREF"
+                                    FromRole="FromRole_BOOKING_TO_PERSREF" ToRole="ToRole_BOOKING_TO_PERSREF"/>
+                <NavigationProperty Name="PRICEDETAILS" Relationship="ZBOOKING_SRV.BOOKING_TO_PRICEDETAILS"
+                                    FromRole="FromRole_BOOKING_TO_PRICEDETAILS"
+                                    ToRole="ToRole_BOOKING_TO_PRICEDETAILS"/>
+                <NavigationProperty Name="VOUCHER" Relationship="ZBOOKING_SRV.BOOKING_TO_VOUCHER"
+                                    FromRole="FromRole_BOOKING_TO_VOUCHER" ToRole="ToRole_BOOKING_TO_VOUCHER"/>
+                <NavigationProperty Name="HOTELS" Relationship="ZBOOKING_SRV.BOOKING_TO_HOTELS"
+                                    FromRole="FromRole_BOOKING_TO_HOTELS" ToRole="ToRole_BOOKING_TO_HOTELS"/>
+                <NavigationProperty Name="PARTICIPANTS" Relationship="ZBOOKING_SRV.BOOKING_TO_PARTICIPANTS"
+                                    FromRole="FromRole_BOOKING_TO_PARTICIPANTS"
+                                    ToRole="ToRole_BOOKING_TO_PARTICIPANTS"/>
+                <NavigationProperty Name="FLIGHTS" Relationship="ZBOOKING_SRV.BOOKING_TO_FLIGHTS"
+                                    FromRole="FromRole_BOOKING_TO_FLIGHTS" ToRole="ToRole_BOOKING_TO_FLIGHTS"/>
+                <NavigationProperty Name="PREF" Relationship="ZBOOKING_SRV.BOOKING_TO_PREF"
+                                    FromRole="FromRole_BOOKING_TO_PREF" ToRole="ToRole_BOOKING_TO_PREF"/>
+            </EntityType>
+            <EntityType Name="PARTICIPANTS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="PartId"/>
+                </Key>
+                <Property Name="Participant" Type="ZBOOKING_SRV.Participant" Nullable="false"/>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Participant ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="TRANSFERS" Relationship="ZBOOKING_SRV.PARTICIPANTS_TO_TRANSFER"
+                                    FromRole="FromRole_PARTICIPANTS_TO_TRANSFER"
+                                    ToRole="ToRole_PARTICIPANTS_TO_TRANSFER"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_PARTICIPANTS"
+                                    FromRole="ToRole_BOOKING_TO_PARTICIPANTS"
+                                    ToRole="FromRole_BOOKING_TO_PARTICIPANTS"/>
+            </EntityType>
+            <EntityType Name="TRANSFERS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="PartId"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickupdescription" Type="Edm.String" Nullable="false" MaxLength="50"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Participant ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PickupcoordLat" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="14"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Hotelname" Type="Edm.String" Nullable="false" MaxLength="50" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PickupcoordLong" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="14"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Custemail" Type="Edm.String" Nullable="false" MaxLength="500" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightdate" Type="Edm.DateTime" Precision="7" sap:label="Flight date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flighttime" Type="Edm.Time" Nullable="false" Precision="0" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightcode" Type="Edm.String" Nullable="false" MaxLength="8" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickuppoint" Type="Edm.String" Nullable="false" MaxLength="50" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickupdate" Type="Edm.DateTime" Precision="7" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickuptime" Type="Edm.Time" Nullable="false" Precision="0" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehicleNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="HOTELS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Segref"/>
+                </Key>
+                <Property Name="Bookingprocess" Type="ZBOOKING_SRV.Bookingprocess" Nullable="false"/>
+                <Property Name="MeasuresHt" Type="ZBOOKING_SRV.MeasuresHt" Nullable="false"/>
+                <Property Name="Hotellocation" Type="ZBOOKING_SRV.Hotellocation" Nullable="false"/>
+                <Property Name="Room" Type="ZBOOKING_SRV.Room" Nullable="false"/>
+                <Property Name="Hotelmasterdata" Type="ZBOOKING_SRV.Hotelmasterdata" Nullable="false"/>
+                <Property Name="Residence" Type="ZBOOKING_SRV.Residence" Nullable="false"/>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ServiceT" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="HOTEL_EXTIDS" Relationship="ZBOOKING_SRV.HOTELS_TO_EXTIDS"
+                                    FromRole="FromRole_HOTELS_TO_EXTIDS" ToRole="ToRole_HOTELS_TO_EXTIDS"/>
+                <NavigationProperty Name="ROOMS" Relationship="ZBOOKING_SRV.HOTELS_TO_ROOMS"
+                                    FromRole="FromRole_HOTELS_TO_ROOMS" ToRole="ToRole_HOTELS_TO_ROOMS"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_HOTELS"
+                                    FromRole="ToRole_BOOKING_TO_HOTELS" ToRole="FromRole_BOOKING_TO_HOTELS"/>
+                <NavigationProperty Name="PRICEDETAILS" Relationship="ZBOOKING_SRV.HOTELS_TO_PRICEDETAILS"
+                                    FromRole="FromRole_HOTELS_TO_PRICEDETAILS" ToRole="ToRole_HOTELS_TO_PRICEDETAILS"/>
+                <NavigationProperty Name="PREF" Relationship="ZBOOKING_SRV.HOTELS_TO_PREF"
+                                    FromRole="FromRole_HOTELS_TO_PREF" ToRole="ToRole_HOTELS_TO_PREF"/>
+                <NavigationProperty Name="PERSREF" Relationship="ZBOOKING_SRV.HOTELS_TO_PERSREF"
+                                    FromRole="FromRole_HOTELS_TO_PERSREF" ToRole="ToRole_HOTELS_TO_PERSREF"/>
+                <NavigationProperty Name="DETAILS" Relationship="ZBOOKING_SRV.HOTELS_TO_DETAILS"
+                                    FromRole="FromRole_HOTELS_TO_DETAILS" ToRole="ToRole_HOTELS_TO_DETAILS"/>
+            </EntityType>
+            <EntityType Name="ROOMS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Segref"/>
+                    <PropertyRef Name="GenKey"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenKey" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="50" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="HOTELS" Relationship="ZBOOKING_SRV.HOTELS_TO_ROOMS"
+                                    FromRole="ToRole_HOTELS_TO_ROOMS" ToRole="FromRole_HOTELS_TO_ROOMS"/>
+            </EntityType>
+            <EntityType Name="FLIGHTS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Segref"/>
+                </Key>
+                <Property Name="Flight" Type="ZBOOKING_SRV.Flight" Nullable="false"/>
+                <Property Name="Realflight" Type="ZBOOKING_SRV.Realflight" Nullable="false"/>
+                <Property Name="MeasuresFl" Type="ZBOOKING_SRV.MeasuresFl" Nullable="false"/>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ServiceT" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="LEGS" Relationship="ZBOOKING_SRV.FLIGHTS_TO_LEGS"
+                                    FromRole="FromRole_FLIGHTS_TO_LEGS" ToRole="ToRole_FLIGHTS_TO_LEGS"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_FLIGHTS"
+                                    FromRole="ToRole_BOOKING_TO_FLIGHTS" ToRole="FromRole_BOOKING_TO_FLIGHTS"/>
+                <NavigationProperty Name="PERSREF" Relationship="ZBOOKING_SRV.FLIGHTS_TO_PERSREF"
+                                    FromRole="FromRole_FLIGHTS_TO_PERSREF" ToRole="ToRole_FLIGHTS_TO_PERSREF"/>
+                <NavigationProperty Name="PREF" Relationship="ZBOOKING_SRV.FLIGHTS_TO_PREF"
+                                    FromRole="FromRole_FLIGHTS_TO_PREF" ToRole="ToRole_FLIGHTS_TO_PREF"/>
+                <NavigationProperty Name="PRICEDETAILS" Relationship="ZBOOKING_SRV.FLIGHTS_TO_PRICEDETAILS"
+                                    FromRole="FromRole_FLIGHTS_TO_PRICEDETAILS"
+                                    ToRole="ToRole_FLIGHTS_TO_PRICEDETAILS"/>
+                <NavigationProperty Name="DETAILS" Relationship="ZBOOKING_SRV.FLIGHTS_TO_DETAILS"
+                                    FromRole="FromRole_FLIGHTS_TO_DETAILS" ToRole="ToRole_FLIGHTS_TO_DETAILS"/>
+            </EntityType>
+            <EntityType Name="LEGS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Segref"/>
+                    <PropertyRef Name="From"/>
+                    <PropertyRef Name="To"/>
+                    <PropertyRef Name="Carrier"/>
+                    <PropertyRef Name="Flightno"/>
+                    <PropertyRef Name="Flightdate"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FromTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightarrivaldate" Type="Edm.DateTime" Nullable="false" Precision="7"
+                          sap:label="Arrival date" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ToTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenKey" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="From" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Departure"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Systemportal" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="System portal"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="To" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Destination"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Carrier"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Extbookid" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CarrierTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="CarrierOp" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Carrier"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CarrierOpTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Flightno" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Flight number"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flighttimefrom" Type="Edm.String" Nullable="false" MaxLength="5"
+                          sap:label="Departure Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Flighttimeto" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Arrival time"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Overnight" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Overnight flig. flag" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Transferflight" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Feeder flight flag" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Class" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Booking class"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ClassTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="FLIGHTS" Relationship="ZBOOKING_SRV.FLIGHTS_TO_LEGS"
+                                    FromRole="ToRole_FLIGHTS_TO_LEGS" ToRole="FromRole_FLIGHTS_TO_LEGS"/>
+                <NavigationProperty Name="POMS" Relationship="ZBOOKING_SRV.LEGS_TO_POMS"
+                                    FromRole="FromRole_LEGS_TO_POMS" ToRole="ToRole_LEGS_TO_POMS"/>
+            </EntityType>
+            <EntityType Name="ANCILLARIES" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Segref"/>
+                </Key>
+                <Property Name="CustomerAnc" Type="ZBOOKING_SRV.CustomerAnc" Nullable="false"/>
+                <Property Name="SalesAnc" Type="ZBOOKING_SRV.SalesAnc" Nullable="false"/>
+                <Property Name="ServiceAnc" Type="ZBOOKING_SRV.ServiceAnc" Nullable="false"/>
+                <Property Name="MeasuresAnc" Type="ZBOOKING_SRV.MeasuresAnc" Nullable="false"/>
+                <Property Name="SourceAnc" Type="ZBOOKING_SRV.SourceAnc" Nullable="false"/>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenKey" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ServiceT" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_ANCILLERIES"
+                                    FromRole="ToRole_BOOKING_TO_ANCILLERIES" ToRole="FromRole_BOOKING_TO_ANCILLERIES"/>
+                <NavigationProperty Name="PERSREF" Relationship="ZBOOKING_SRV.ANCILLERIES_TO_PERSREF"
+                                    FromRole="FromRole_ANCILLERIES_TO_PERSREF" ToRole="ToRole_ANCILLERIES_TO_PERSREF"/>
+                <NavigationProperty Name="PRICEDETAILS" Relationship="ZBOOKING_SRV.ANCILLERIES_TO_PRICEDETAILS"
+                                    FromRole="FromRole_ANCILLERIES_TO_PRICEDETAILS"
+                                    ToRole="ToRole_ANCILLERIES_TO_PRICEDETAILS"/>
+                <NavigationProperty Name="PREF" Relationship="ZBOOKING_SRV.ANCILLERIES_TO_PREF"
+                                    FromRole="FromRole_ANCILLERIES_TO_PREF" ToRole="ToRole_ANCILLERIES_TO_PREF"/>
+            </EntityType>
+            <EntityType Name="PREF" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="PartId"/>
+                    <PropertyRef Name="Segref"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Participant ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Textq" Type="Edm.String" Nullable="false" MaxLength="60" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Textvariable" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Textvlong" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Confirmed" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ANCILLARIES" Relationship="ZBOOKING_SRV.ANCILLERIES_TO_PREF"
+                                    FromRole="ToRole_ANCILLERIES_TO_PREF" ToRole="FromRole_ANCILLERIES_TO_PREF"/>
+            </EntityType>
+            <EntityType Name="PERSREF" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Segref"/>
+                    <PropertyRef Name="PartId"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Participant ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_PERSREF"
+                                    FromRole="ToRole_BOOKING_TO_PERSREF" ToRole="FromRole_BOOKING_TO_PERSREF"/>
+                <NavigationProperty Name="ANCILLARIES" Relationship="ZBOOKING_SRV.ANCILLERIES_TO_PERSREF"
+                                    FromRole="ToRole_ANCILLERIES_TO_PERSREF" ToRole="FromRole_ANCILLERIES_TO_PERSREF"/>
+            </EntityType>
+            <EntityType Name="DETAILS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Segref"/>
+                    <PropertyRef Name="GenKey"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenKey" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Detailtext" Type="Edm.String" Nullable="false" MaxLength="250" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="FLIGHTS" Relationship="ZBOOKING_SRV.FLIGHTS_TO_DETAILS"
+                                    FromRole="ToRole_FLIGHTS_TO_DETAILS" ToRole="FromRole_FLIGHTS_TO_DETAILS"/>
+                <NavigationProperty Name="HOTELS" Relationship="ZBOOKING_SRV.HOTELS_TO_DETAILS"
+                                    FromRole="ToRole_HOTELS_TO_DETAILS" ToRole="FromRole_HOTELS_TO_DETAILS"/>
+            </EntityType>
+            <EntityType Name="PRICEDETAILS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Segref"/>
+                    <PropertyRef Name="GenKey"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenKey" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pricetype" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PricetypeTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Addtext" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Baseamount" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3"
+                          sap:unit="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="3" sap:unit="Unit"
+                          sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Mandatoryamount" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3"
+                          sap:unit="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Totalamount" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3"
+                          sap:unit="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"
+                          sap:semantics="currency-code"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Unit of measure"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"
+                          sap:semantics="unit-of-measure"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_PRICEDETAILS"
+                                    FromRole="ToRole_BOOKING_TO_PRICEDETAILS"
+                                    ToRole="FromRole_BOOKING_TO_PRICEDETAILS"/>
+                <NavigationProperty Name="ANCILLARIES" Relationship="ZBOOKING_SRV.ANCILLERIES_TO_PRICEDETAILS"
+                                    FromRole="ToRole_ANCILLERIES_TO_PRICEDETAILS"
+                                    ToRole="FromRole_ANCILLERIES_TO_PRICEDETAILS"/>
+            </EntityType>
+            <EntityType Name="POMS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Segref"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Transfertstamp" Type="Edm.String" Nullable="false" MaxLength="14"
+                          sap:label="Timestamp der Übertr" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Carrier"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightcode" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Flight number"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FlightdateOriginal" Type="Edm.DateTime" Precision="7" sap:label="Flugdatum (Original)"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Depatureairport" Type="Edm.String" Nullable="false" MaxLength="3"
+                          sap:label="Departure airport" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Arrivalairport" Type="Edm.String" Nullable="false" MaxLength="3"
+                          sap:label="Destination airport" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightstatus" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Flight status"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightdate" Type="Edm.DateTime" Precision="7" sap:label="Flight date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Depaturetime" Type="Edm.String" Nullable="false" MaxLength="5"
+                          sap:label="Departure Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Depaturestatus" Type="Edm.String" Nullable="false" MaxLength="3"
+                          sap:label="Abflugstatus" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Arrivaldate" Type="Edm.DateTime" Precision="7" sap:label="Arrival date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Arrivaltime" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Arrival time"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Arrivalstatus" Type="Edm.String" Nullable="false" MaxLength="3"
+                          sap:label="Ankunftsstatus" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <NavigationProperty Name="LEGS" Relationship="ZBOOKING_SRV.LEGS_TO_POMS" FromRole="ToRole_LEGS_TO_POMS"
+                                    ToRole="FromRole_LEGS_TO_POMS"/>
+            </EntityType>
+            <EntityType Name="MARKETINGACTIONS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CampaignId" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="CRM Marketing Elem." sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CampaignIdTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="DateOfmarketingaction" Type="Edm.DateTime" Precision="7" sap:label="Datum Mkt.-Aktion"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Make" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Brand"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TypeofcampaignEle" Type="Edm.String" Nullable="false" MaxLength="4"
+                          sap:label="Camp. Element Type" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Goal" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Objective(s)"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Communicationmedia" Type="Edm.String" Nullable="false" MaxLength="4"
+                          sap:label="Communication Medium" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tactic" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Tactic"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pal" Type="Edm.DateTime" Precision="7" sap:label="PAL" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="E-Mail 1"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_MARKETINGACTIONS"
+                                    FromRole="ToRole_BOOKING_TO_MARKETINGACTIONS"
+                                    ToRole="FromRole_BOOKING_TO_MARKETINGACTIONS"/>
+            </EntityType>
+            <EntityType Name="VOUCHER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                </Key>
+                <Property Name="VoucherCode" Type="Edm.String" Nullable="false" MaxLength="16"
+                          sap:label="Gutschein-Code" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RedeemedBooking" Type="Edm.String" Nullable="false" MaxLength="30"
+                          sap:label="Einlösender RA" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="VastCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="VAST Code"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RedeemCanceld" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Einlösung storniert" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VoucherReedemDate" Type="Edm.DateTime" Precision="7" sap:label="Gutscheineinlösedatu"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RedeemedAmount" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3"
+                          sap:unit="Currency" sap:label="Einlöse Betrag" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BookingIdentified" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Gutis: RA identi." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Bookingcode" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Booking Code"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bookingdate" Type="Edm.DateTime" Precision="7" sap:label="Booking Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sourcesystem" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Source System"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerid" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businesspartner" Type="Edm.String" Nullable="false" MaxLength="10"
+                          sap:label="Business Partner" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="ReedemCustDiff" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Einlöser abw." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"
+                          sap:semantics="currency-code"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_VOUCHER"
+                                    FromRole="ToRole_BOOKING_TO_VOUCHER" ToRole="FromRole_BOOKING_TO_VOUCHER"/>
+            </EntityType>
+            <EntityType Name="PERMISSION" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="ZOPTIN_T"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Optin-Status"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dataorigin" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Optin Quelle"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Date" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Bestätigungsdatum"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_OPTIN"
+                                    FromRole="ToRole_BOOKING_TO_OPTIN" ToRole="FromRole_BOOKING_TO_OPTIN"/>
+            </EntityType>
+            <EntityType Name="MESSAGES" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Message type"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Message Class"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MsgNo" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Message number"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MsgTxt" Type="Edm.String" Nullable="false" MaxLength="220" sap:label="Message text"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_MESSAGES"
+                                    FromRole="ToRole_BOOKING_TO_MESSAGES" ToRole="FromRole_BOOKING_TO_MESSAGES"/>
+            </EntityType>
+            <EntityType Name="BOOKING_EXTIDS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Extidtype"/>
+                    <PropertyRef Name="Bookingkey"/>
+                    <PropertyRef Name="Extid"/>
+                </Key>
+                <Property Name="Extidtype" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Extid" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.BOOKING_TO_EXTIDS"
+                                    FromRole="ToRole_BOOKING_TO_EXTIDS" ToRole="FromRole_BOOKING_TO_EXTIDS"/>
+            </EntityType>
+            <EntityType Name="HOTELS_EXTIDS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookingkey"/>
+                </Key>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Segref" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Segment Reference"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Extidtype" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Extid" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="HOTELS" Relationship="ZBOOKING_SRV.HOTELS_TO_EXTIDS"
+                                    FromRole="ToRole_HOTELS_TO_EXTIDS" ToRole="FromRole_HOTELS_TO_EXTIDS"/>
+            </EntityType>
+            <EntityType Name="MSG_HEADER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Msgid"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txtflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Requester" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Source"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="BOOKING" Relationship="ZBOOKING_SRV.MSG_HEADER_TO_BOOKING"
+                                    FromRole="FromRole_MSG_HEADER_TO_BOOKING" ToRole="ToRole_MSG_HEADER_TO_BOOKING"/>
+            </EntityType>
+            <ComplexType Name="Changemanagement">
+                <Property Name="Zversion" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Order Version"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Order Status"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedate" Type="Edm.DateTime" Precision="7" sap:label="Change Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changetime" Type="Edm.DateTime" Precision="7" sap:label="Change Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="CustomerBk">
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Withchildren" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Traveled with child" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mobile" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Cellphone number"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="250" sap:label="E-Mail Adress"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Phone" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="BAS: First Tel. No."
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Emergencyno" Type="Edm.String" Nullable="false" MaxLength="30"
+                          sap:label="Emergency number" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Dates">
+                <Property Name="Bookingyear" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Booking Year"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bookingmonth" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Booking Month"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Optiondate" Type="Edm.DateTime" Precision="7" sap:label="Option end date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Startdate" Type="Edm.DateTime" Precision="7" sap:label="Start Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Enddate" Type="Edm.DateTime" Precision="7" sap:label="End Date" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Season" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Saison"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Travelyear" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Travel year"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Travelmonth" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Travel month"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerdstartdate" Type="Edm.DateTime" Precision="7" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerenddate" Type="Edm.DateTime" Precision="7" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zgeschja" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Fiscal year"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Fullfilment">
+                <Property Name="Customerdocformat" Type="Edm.String" Nullable="false" MaxLength="2"
+                          sap:label="Customer documents" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Paymentclass" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Inkasso type"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PaymentclassTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Paymentwish" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Payment wish"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PaymentwishTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Key">
+                <Property Name="Bookingno" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Booking Code"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Creationdate" Type="Edm.DateTime" Precision="7" sap:label="Booking Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sourcesystem" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Source System"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SourcesystemTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="MeasuresBk">
+                <Property Name="Ra" Type="Edm.Int32" Nullable="false" sap:label="Booking Quantity" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pax" Type="Edm.Int32" Nullable="false" sap:label="Passanger Count" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fullpayer" Type="Edm.Int32" Nullable="false" sap:label="Number full payers"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Partlypayer" Type="Edm.Int32" Nullable="false" sap:label="Number of particip."
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Adults" Type="Edm.Int32" Nullable="false" sap:label="Number of adults"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Children" Type="Edm.Int32" Nullable="false" sap:label="Number of children"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Infants" Type="Edm.Int32" Nullable="false" sap:label="Number of infants"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"
+                          sap:semantics="currency-code"/>
+                <Property Name="Revenue" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3"
+                          sap:unit="Currency" sap:label="Tour-opera. proceeds" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Duration" Type="Edm.Int32" Nullable="false" sap:label="Travel duration"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Traveldurationcategory" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Travel duration cat." sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prebookingdistance" Type="Edm.Int32" Nullable="false" sap:label="Difference bk - jour"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Originalvalues">
+                <Property Name="OrtanO" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="location to"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BefartO" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="mode of transport"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZiellandO" Type="Edm.String" Nullable="false" MaxLength="3"
+                          sap:label="Country of destinat." sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZielflugO" Type="Edm.String" Nullable="false" MaxLength="3"
+                          sap:label="Destination airport" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AbflugO" Type="Edm.String" Nullable="false" MaxLength="3"
+                          sap:label="Airport of departure" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="SalesBk">
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BusinessareaTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Make" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Brand"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MakeTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Salesoperator" Type="Edm.String" Nullable="false" MaxLength="6"
+                          sap:label="Sales-operator" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="SalesoperatorTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Catalog" Type="Edm.String" Nullable="false" MaxLength="8" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CatalogTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Agency" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Agency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AgencyTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Extagency" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="External Agency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Touroperator" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="VAST Code"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TouroperatorTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Salestouroperator" Type="Edm.String" Nullable="false" MaxLength="2"
+                          sap:label="Sales-organisation" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SalestouroperatorTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Complaintexists" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Complaint ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Participant">
+                <Property Name="Ageatdeparture" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Age"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Datebirthcalc" Type="Edm.DateTime" Precision="7" sap:label="calcu. Date of Birth"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gender" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Gender"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenderTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Title"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TitleTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lastname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BP: First Name"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Firstname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BP: Surname"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Datebirth" Type="Edm.DateTime" Precision="7" sap:label="Date of Birth"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Persontype" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PersontypeTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Personprice" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3"
+                          sap:unit="Currency" sap:label="Price/person" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DataTs" Type="Edm.String" Nullable="false" MaxLength="14"
+                          sap:label="Timest Data Creation" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TransTs" Type="Edm.String" Nullable="false" MaxLength="14"
+                          sap:label="Timest. DataTransfer" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"
+                          sap:semantics="currency-code"/>
+            </ComplexType>
+            <ComplexType Name="Transfers">
+                <Property Name="Hotelname" Type="Edm.String" Nullable="false" MaxLength="50" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bookingkey" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="combined Booking ID" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightdate" Type="Edm.DateTime" Precision="7" sap:label="Flight date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Participant ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flighttime" Type="Edm.Time" Nullable="false" Precision="0" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickupdescription" Type="Edm.String" Nullable="false" MaxLength="50"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightcode" Type="Edm.String" Nullable="false" MaxLength="8" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PickupcoordLat" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="14"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickuppoint" Type="Edm.String" Nullable="false" MaxLength="50" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PickupcoordLong" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="14"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickupdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Custemail" Type="Edm.String" Nullable="false" MaxLength="500" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pickuptime" Type="Edm.Time" Nullable="false" Precision="0" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehicleNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="DestinationBk">
+                <Property Name="Mainhotelcode" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Hotel code"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prebooking" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Prebooking"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MainhotelTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Departure" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Departure"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DepartureTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Destination" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Destination"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DestinationTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Bookingprocess">
+                <Property Name="Systemportal" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="System portal"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Extbookid" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changepossible" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Change possible" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Deleted" Type="Edm.Boolean" Nullable="false" sap:label="Delete-Flag"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Hotellocation">
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Hotel name"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CoordLat" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="14"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Street Name"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CoordLong" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="14"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Houseno" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="CAM: House Number"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Zip" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="CAM: Postal Code"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Location"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Hotelmasterdata">
+                <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Hotel category"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Franchisechain" Type="Edm.String" Nullable="false" MaxLength="4"
+                          sap:label="Franchise chain" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="FranchisechainTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Hotelchain" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Hotel chain"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HotelchainTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Partnerhotel" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Fl. partner hotel bk" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Hotelclass" Type="Edm.String" Nullable="false" MaxLength="2"
+                          sap:label="Fl. partner hotel bk" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="MeasuresHt">
+                <Property Name="Additionalbed" Type="Edm.Int32" Nullable="false" sap:label="Number of extra beds"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Countobjects" Type="Edm.Int32" Nullable="false" sap:label="Number of Objects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Objecttype" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Duration" Type="Edm.Int32" Nullable="false" sap:label="Travel duration"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Adults" Type="Edm.Int32" Nullable="false" sap:label="Number of adults"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Children" Type="Edm.Int32" Nullable="false" sap:label="Number of children"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Infants" Type="Edm.Int32" Nullable="false" sap:label="Number of infants"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Residence">
+                <Property Name="Hotel" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Hotel code"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HotelTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2"
+                          sap:label="Hotelposition status" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Meal" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Type of board"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MealTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Start" Type="Edm.DateTime" Precision="7" sap:label="Startdate of Service"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="End" Type="Edm.DateTime" Precision="7" sap:label="Enddate of Service"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Destination" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Destination"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DestinationTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Room">
+                <Property Name="Roomtype" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Room type"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Roomkind" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Roomdescription" Type="Edm.String" Nullable="false" MaxLength="40"
+                          sap:label="Room description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Flight">
+                <Property Name="Seatreservation" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flightarrivaldate" Type="Edm.DateTime" Precision="7" sap:label="Arrival date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeatreservationTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="FromTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="ToTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="From" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Departure"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="To" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Destination"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Connectionid" Type="Edm.String" Nullable="false" MaxLength="2"
+                          sap:label="Connection number" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Flightdate" Type="Edm.DateTime" Precision="7" sap:label="Flight date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flighttimefrom" Type="Edm.String" Nullable="false" MaxLength="5"
+                          sap:label="Departure Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Flighttimeto" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Arrival time"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Direction" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="In/outbound fl. flag" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changepossible" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Change possible" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="MeasuresFl">
+                <Property Name="Duration" Type="Edm.Int32" Nullable="false" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Seats" Type="Edm.Int32" Nullable="false" sap:label="Number of res. Seats"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Adults" Type="Edm.Int32" Nullable="false" sap:label="Number of adults"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Children" Type="Edm.Int32" Nullable="false" sap:label="Number of children"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Infants" Type="Edm.Int32" Nullable="false" sap:label="Number of infants"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Realflight">
+                <Property Name="Realdate" Type="Edm.DateTime" Precision="7" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Realdeparture" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Realdestination" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Realterminal" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="CustomerAnc">
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Title"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TitleTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Firstname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BP: First Name"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lastname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BP: Surname"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Phone" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="BAS: First Tel. No."
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mobile" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Cellphone number"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="250" sap:label="E-Mail Adress"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="MeasuresAnc">
+                <Property Name="Quantity" Type="Edm.Int32" Nullable="false" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Amount" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3" sap:unit="Currency"
+                          sap:label="Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"
+                          sap:semantics="currency-code"/>
+                <Property Name="Duration" Type="Edm.Int32" Nullable="false" sap:label="Travel duration"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Adults" Type="Edm.Int32" Nullable="false" sap:label="Number of adults"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Children" Type="Edm.Int32" Nullable="false" sap:label="Number of children"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Infants" Type="Edm.Int32" Nullable="false" sap:label="Number of infants"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="SalesAnc">
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BusinessareaTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Make" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Brand"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MakeTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Touroperator" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="VAST Code"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TouroperatorTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Agency" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Agency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AgencyTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Bookingdate" Type="Edm.DateTime" Precision="7" sap:label="Booking date kronos"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="ServiceAnc">
+                <Property Name="Service" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="SSR Service"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ServiceTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Servicegroup" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="SSR Group"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ServicegroupTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Servicetype" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Product type"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ServicetypeTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Provider" Type="Edm.String" Nullable="false" MaxLength="20"
+                          sap:label="Provider ancillaries" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProviderTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Start" Type="Edm.DateTime" Precision="7" sap:label="Start Date" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="End" Type="Edm.DateTime" Precision="7" sap:label="End Date" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="80" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="SourceAnc">
+                <Property Name="Source" Type="Edm.String" Nullable="false" MaxLength="8" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Systemportal" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="System portal"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SourceTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Changepossible" Type="Edm.String" Nullable="false" MaxLength="1"
+                          sap:label="Change possible" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Extbookid" Type="Edm.String" Nullable="false" MaxLength="16" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Deleted" Type="Edm.Boolean" Nullable="false" sap:label="Delete-Flag"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <Association Name="BOOKING_TO_FLIGHTS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_FLIGHTS"/>
+                <End Type="ZBOOKING_SRV.FLIGHTS" Multiplicity="*" Role="ToRole_BOOKING_TO_FLIGHTS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_FLIGHTS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_FLIGHTS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_PARTICIPANTS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_PARTICIPANTS"/>
+                <End Type="ZBOOKING_SRV.PARTICIPANTS" Multiplicity="*" Role="ToRole_BOOKING_TO_PARTICIPANTS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_PARTICIPANTS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_PARTICIPANTS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_HOTELS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_HOTELS"/>
+                <End Type="ZBOOKING_SRV.HOTELS" Multiplicity="*" Role="ToRole_BOOKING_TO_HOTELS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_HOTELS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_HOTELS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_VOUCHER" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_VOUCHER"/>
+                <End Type="ZBOOKING_SRV.VOUCHER" Multiplicity="*" Role="ToRole_BOOKING_TO_VOUCHER"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_VOUCHER">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_VOUCHER">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_PRICEDETAILS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_PRICEDETAILS"/>
+                <End Type="ZBOOKING_SRV.PRICEDETAILS" Multiplicity="*" Role="ToRole_BOOKING_TO_PRICEDETAILS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_PRICEDETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_PRICEDETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_PREF" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_PREF"/>
+                <End Type="ZBOOKING_SRV.PREF" Multiplicity="*" Role="ToRole_BOOKING_TO_PREF"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_PREF">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_PREF">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_PERSREF" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_PERSREF"/>
+                <End Type="ZBOOKING_SRV.PERSREF" Multiplicity="*" Role="ToRole_BOOKING_TO_PERSREF"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_PERSREF">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_PERSREF">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_OPTIN" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_OPTIN"/>
+                <End Type="ZBOOKING_SRV.PERMISSION" Multiplicity="*" Role="ToRole_BOOKING_TO_OPTIN"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_OPTIN">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_OPTIN">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_DETAILS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_DETAILS"/>
+                <End Type="ZBOOKING_SRV.DETAILS" Multiplicity="*" Role="ToRole_BOOKING_TO_DETAILS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_DETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_DETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_ANCILLERIES" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_ANCILLERIES"/>
+                <End Type="ZBOOKING_SRV.ANCILLARIES" Multiplicity="*" Role="ToRole_BOOKING_TO_ANCILLERIES"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_ANCILLERIES">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_ANCILLERIES">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_MARKETINGACTIONS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_MARKETINGACTIONS"/>
+                <End Type="ZBOOKING_SRV.MARKETINGACTIONS" Multiplicity="*" Role="ToRole_BOOKING_TO_MARKETINGACTIONS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_MARKETINGACTIONS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_MARKETINGACTIONS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_MESSAGES" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_MESSAGES"/>
+                <End Type="ZBOOKING_SRV.MESSAGES" Multiplicity="*" Role="ToRole_BOOKING_TO_MESSAGES"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_MESSAGES">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_MESSAGES">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BOOKING_TO_EXTIDS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="1" Role="FromRole_BOOKING_TO_EXTIDS"/>
+                <End Type="ZBOOKING_SRV.BOOKING_EXTIDS" Multiplicity="*" Role="ToRole_BOOKING_TO_EXTIDS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BOOKING_TO_EXTIDS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BOOKING_TO_EXTIDS">
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="FLIGHTS_TO_DETAILS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.FLIGHTS" Multiplicity="1" Role="FromRole_FLIGHTS_TO_DETAILS"/>
+                <End Type="ZBOOKING_SRV.DETAILS" Multiplicity="*" Role="ToRole_FLIGHTS_TO_DETAILS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_FLIGHTS_TO_DETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_FLIGHTS_TO_DETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="FLIGHTS_TO_PERSREF" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.FLIGHTS" Multiplicity="1" Role="FromRole_FLIGHTS_TO_PERSREF"/>
+                <End Type="ZBOOKING_SRV.PERSREF" Multiplicity="*" Role="ToRole_FLIGHTS_TO_PERSREF"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_FLIGHTS_TO_PERSREF">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_FLIGHTS_TO_PERSREF">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="FLIGHTS_TO_PREF" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.FLIGHTS" Multiplicity="1" Role="FromRole_FLIGHTS_TO_PREF"/>
+                <End Type="ZBOOKING_SRV.PREF" Multiplicity="*" Role="ToRole_FLIGHTS_TO_PREF"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_FLIGHTS_TO_PREF">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_FLIGHTS_TO_PREF">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="FLIGHTS_TO_PRICEDETAILS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.FLIGHTS" Multiplicity="1" Role="FromRole_FLIGHTS_TO_PRICEDETAILS"/>
+                <End Type="ZBOOKING_SRV.PRICEDETAILS" Multiplicity="*" Role="ToRole_FLIGHTS_TO_PRICEDETAILS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_FLIGHTS_TO_PRICEDETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_FLIGHTS_TO_PRICEDETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="FLIGHTS_TO_LEGS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.FLIGHTS" Multiplicity="1" Role="FromRole_FLIGHTS_TO_LEGS"/>
+                <End Type="ZBOOKING_SRV.LEGS" Multiplicity="*" Role="ToRole_FLIGHTS_TO_LEGS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_FLIGHTS_TO_LEGS">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_FLIGHTS_TO_LEGS">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ANCILLERIES_TO_PREF" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.ANCILLARIES" Multiplicity="1" Role="FromRole_ANCILLERIES_TO_PREF"/>
+                <End Type="ZBOOKING_SRV.PREF" Multiplicity="*" Role="ToRole_ANCILLERIES_TO_PREF"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ANCILLERIES_TO_PREF">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ANCILLERIES_TO_PREF">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ANCILLERIES_TO_PRICEDETAILS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.ANCILLARIES" Multiplicity="1" Role="FromRole_ANCILLERIES_TO_PRICEDETAILS"/>
+                <End Type="ZBOOKING_SRV.PRICEDETAILS" Multiplicity="*" Role="ToRole_ANCILLERIES_TO_PRICEDETAILS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ANCILLERIES_TO_PRICEDETAILS">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ANCILLERIES_TO_PRICEDETAILS">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ANCILLERIES_TO_PERSREF" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.ANCILLARIES" Multiplicity="1" Role="FromRole_ANCILLERIES_TO_PERSREF"/>
+                <End Type="ZBOOKING_SRV.PERSREF" Multiplicity="*" Role="ToRole_ANCILLERIES_TO_PERSREF"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ANCILLERIES_TO_PERSREF">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ANCILLERIES_TO_PERSREF">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PARTICIPANTS_TO_TRANSFER" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.PARTICIPANTS" Multiplicity="1" Role="FromRole_PARTICIPANTS_TO_TRANSFER"/>
+                <End Type="ZBOOKING_SRV.TRANSFERS" Multiplicity="*" Role="ToRole_PARTICIPANTS_TO_TRANSFER"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PARTICIPANTS_TO_TRANSFER">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="PartId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PARTICIPANTS_TO_TRANSFER">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="PartId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HOTELS_TO_DETAILS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.HOTELS" Multiplicity="1" Role="FromRole_HOTELS_TO_DETAILS"/>
+                <End Type="ZBOOKING_SRV.DETAILS" Multiplicity="*" Role="ToRole_HOTELS_TO_DETAILS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HOTELS_TO_DETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HOTELS_TO_DETAILS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HOTELS_TO_PRICEDETAILS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.HOTELS" Multiplicity="1" Role="FromRole_HOTELS_TO_PRICEDETAILS"/>
+                <End Type="ZBOOKING_SRV.PRICEDETAILS" Multiplicity="*" Role="ToRole_HOTELS_TO_PRICEDETAILS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HOTELS_TO_PRICEDETAILS">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HOTELS_TO_PRICEDETAILS">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HOTELS_TO_PREF" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.HOTELS" Multiplicity="1" Role="FromRole_HOTELS_TO_PREF"/>
+                <End Type="ZBOOKING_SRV.PREF" Multiplicity="*" Role="ToRole_HOTELS_TO_PREF"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HOTELS_TO_PREF">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HOTELS_TO_PREF">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HOTELS_TO_PERSREF" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.HOTELS" Multiplicity="1" Role="FromRole_HOTELS_TO_PERSREF"/>
+                <End Type="ZBOOKING_SRV.PERSREF" Multiplicity="*" Role="ToRole_HOTELS_TO_PERSREF"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HOTELS_TO_PERSREF">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HOTELS_TO_PERSREF">
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HOTELS_TO_ROOMS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.HOTELS" Multiplicity="1" Role="FromRole_HOTELS_TO_ROOMS"/>
+                <End Type="ZBOOKING_SRV.ROOMS" Multiplicity="*" Role="ToRole_HOTELS_TO_ROOMS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HOTELS_TO_ROOMS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HOTELS_TO_ROOMS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HOTELS_TO_EXTIDS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.HOTELS" Multiplicity="*" Role="FromRole_HOTELS_TO_EXTIDS"/>
+                <End Type="ZBOOKING_SRV.HOTELS_EXTIDS" Multiplicity="*" Role="ToRole_HOTELS_TO_EXTIDS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HOTELS_TO_EXTIDS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HOTELS_TO_EXTIDS">
+                        <PropertyRef Name="Bookingkey"/>
+                        <PropertyRef Name="Segref"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="LEGS_TO_POMS" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.LEGS" Multiplicity="1" Role="FromRole_LEGS_TO_POMS"/>
+                <End Type="ZBOOKING_SRV.POMS" Multiplicity="0..1" Role="ToRole_LEGS_TO_POMS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_LEGS_TO_POMS">
+                        <PropertyRef Name="Carrier"/>
+                        <PropertyRef Name="Flightdate"/>
+                        <PropertyRef Name="From"/>
+                        <PropertyRef Name="To"/>
+                        <PropertyRef Name="Flightno"/>
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Principal>
+                    <Dependent Role="ToRole_LEGS_TO_POMS">
+                        <PropertyRef Name="Carrier"/>
+                        <PropertyRef Name="Flightdate"/>
+                        <PropertyRef Name="Depatureairport"/>
+                        <PropertyRef Name="Arrivalairport"/>
+                        <PropertyRef Name="Flightcode"/>
+                        <PropertyRef Name="Segref"/>
+                        <PropertyRef Name="Bookingkey"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_BOOKING" sap:content-version="1">
+                <End Type="ZBOOKING_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_BOOKING"/>
+                <End Type="ZBOOKING_SRV.BOOKING" Multiplicity="*" Role="ToRole_MSG_HEADER_TO_BOOKING"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_BOOKING">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_BOOKING">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZBOOKING_SRV_Entities" m:IsDefaultEntityContainer="true"
+                             sap:supported-formats="atom json xlsx">
+                <EntitySet Name="BOOKING" EntityType="ZBOOKING_SRV.BOOKING" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PARTICIPANTS" EntityType="ZBOOKING_SRV.PARTICIPANTS" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="TRANSFERS" EntityType="ZBOOKING_SRV.TRANSFERS" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HOTELS" EntityType="ZBOOKING_SRV.HOTELS" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ROOMS" EntityType="ZBOOKING_SRV.ROOMS" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FLIGHTS" EntityType="ZBOOKING_SRV.FLIGHTS" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="LEGS" EntityType="ZBOOKING_SRV.LEGS" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ANCILLARIES" EntityType="ZBOOKING_SRV.ANCILLARIES" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PREF" EntityType="ZBOOKING_SRV.PREF" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PERSREF" EntityType="ZBOOKING_SRV.PERSREF" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DETAILS" EntityType="ZBOOKING_SRV.DETAILS" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PRICEDETAILS" EntityType="ZBOOKING_SRV.PRICEDETAILS" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POMS" EntityType="ZBOOKING_SRV.POMS" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MARKETINGACTIONS" EntityType="ZBOOKING_SRV.MARKETINGACTIONS" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VOUCHER" EntityType="ZBOOKING_SRV.VOUCHER" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="OPTIN" EntityType="ZBOOKING_SRV.PERMISSION" sap:creatable="false" sap:updatable="false"
+                           sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MESSAGES" EntityType="ZBOOKING_SRV.MESSAGES" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BOOKING_EXTIDS" EntityType="ZBOOKING_SRV.BOOKING_EXTIDS" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HOTEL_EXTIDS" EntityType="ZBOOKING_SRV.HOTELS_EXTIDS" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HOTELS_EXTIDSSet" EntityType="ZBOOKING_SRV.HOTELS_EXTIDS" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MSG_HEADER" EntityType="ZBOOKING_SRV.MSG_HEADER" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="FLIGHTS_TO_LEGSSet" Association="ZBOOKING_SRV.FLIGHTS_TO_LEGS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="FLIGHTS" Role="FromRole_FLIGHTS_TO_LEGS"/>
+                    <End EntitySet="LEGS" Role="ToRole_FLIGHTS_TO_LEGS"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_BOOKINGSet" Association="ZBOOKING_SRV.MSG_HEADER_TO_BOOKING"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_BOOKING"/>
+                    <End EntitySet="BOOKING" Role="ToRole_MSG_HEADER_TO_BOOKING"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_OPTINSet" Association="ZBOOKING_SRV.BOOKING_TO_OPTIN"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_OPTIN"/>
+                    <End EntitySet="OPTIN" Role="ToRole_BOOKING_TO_OPTIN"/>
+                </AssociationSet>
+                <AssociationSet Name="HOTELS_TO_DETAILSSet" Association="ZBOOKING_SRV.HOTELS_TO_DETAILS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="HOTELS" Role="FromRole_HOTELS_TO_DETAILS"/>
+                    <End EntitySet="DETAILS" Role="ToRole_HOTELS_TO_DETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_HOTELSSet" Association="ZBOOKING_SRV.BOOKING_TO_HOTELS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_HOTELS"/>
+                    <End EntitySet="HOTELS" Role="ToRole_BOOKING_TO_HOTELS"/>
+                </AssociationSet>
+                <AssociationSet Name="FLIGHTS_TO_PREF" Association="ZBOOKING_SRV.FLIGHTS_TO_PREF" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="FLIGHTS" Role="FromRole_FLIGHTS_TO_PREF"/>
+                    <End EntitySet="PREF" Role="ToRole_FLIGHTS_TO_PREF"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_PREF" Association="ZBOOKING_SRV.BOOKING_TO_PREF" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_PREF"/>
+                    <End EntitySet="PREF" Role="ToRole_BOOKING_TO_PREF"/>
+                </AssociationSet>
+                <AssociationSet Name="ANCILLERIES_TO_PERSREFSet" Association="ZBOOKING_SRV.ANCILLERIES_TO_PERSREF"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="ANCILLARIES" Role="FromRole_ANCILLERIES_TO_PERSREF"/>
+                    <End EntitySet="PERSREF" Role="ToRole_ANCILLERIES_TO_PERSREF"/>
+                </AssociationSet>
+                <AssociationSet Name="FLIGHTS_TO_PERSREF" Association="ZBOOKING_SRV.FLIGHTS_TO_PERSREF"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="FLIGHTS" Role="FromRole_FLIGHTS_TO_PERSREF"/>
+                    <End EntitySet="PERSREF" Role="ToRole_FLIGHTS_TO_PERSREF"/>
+                </AssociationSet>
+                <AssociationSet Name="ANCILLERIES_TO_PREFSet" Association="ZBOOKING_SRV.ANCILLERIES_TO_PREF"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="ANCILLARIES" Role="FromRole_ANCILLERIES_TO_PREF"/>
+                    <End EntitySet="PREF" Role="ToRole_ANCILLERIES_TO_PREF"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_VOUCHERSet" Association="ZBOOKING_SRV.BOOKING_TO_VOUCHER"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_VOUCHER"/>
+                    <End EntitySet="VOUCHER" Role="ToRole_BOOKING_TO_VOUCHER"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_PRICEDETAILSSet" Association="ZBOOKING_SRV.BOOKING_TO_PRICEDETAILS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_PRICEDETAILS"/>
+                    <End EntitySet="PRICEDETAILS" Role="ToRole_BOOKING_TO_PRICEDETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_FLIGHTSSet" Association="ZBOOKING_SRV.BOOKING_TO_FLIGHTS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_FLIGHTS"/>
+                    <End EntitySet="FLIGHTS" Role="ToRole_BOOKING_TO_FLIGHTS"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_PARTICIPANTSSet" Association="ZBOOKING_SRV.BOOKING_TO_PARTICIPANTS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_PARTICIPANTS"/>
+                    <End EntitySet="PARTICIPANTS" Role="ToRole_BOOKING_TO_PARTICIPANTS"/>
+                </AssociationSet>
+                <AssociationSet Name="LEGS_TO_POMSSet" Association="ZBOOKING_SRV.LEGS_TO_POMS" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="LEGS" Role="FromRole_LEGS_TO_POMS"/>
+                    <End EntitySet="POMS" Role="ToRole_LEGS_TO_POMS"/>
+                </AssociationSet>
+                <AssociationSet Name="PARTICIPANTS_TO_TRANSFERSet" Association="ZBOOKING_SRV.PARTICIPANTS_TO_TRANSFER"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="PARTICIPANTS" Role="FromRole_PARTICIPANTS_TO_TRANSFER"/>
+                    <End EntitySet="TRANSFERS" Role="ToRole_PARTICIPANTS_TO_TRANSFER"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_MARKETINGACTIONSSet"
+                                Association="ZBOOKING_SRV.BOOKING_TO_MARKETINGACTIONS" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_MARKETINGACTIONS"/>
+                    <End EntitySet="MARKETINGACTIONS" Role="ToRole_BOOKING_TO_MARKETINGACTIONS"/>
+                </AssociationSet>
+                <AssociationSet Name="HOTELS_TO_PREF_AssocSet" Association="ZBOOKING_SRV.HOTELS_TO_PREF"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="HOTELS" Role="FromRole_HOTELS_TO_PREF"/>
+                    <End EntitySet="PREF" Role="ToRole_HOTELS_TO_PREF"/>
+                </AssociationSet>
+                <AssociationSet Name="ANCILLERIES_TO_PRICEDETAILSSet"
+                                Association="ZBOOKING_SRV.ANCILLERIES_TO_PRICEDETAILS" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ANCILLARIES" Role="FromRole_ANCILLERIES_TO_PRICEDETAILS"/>
+                    <End EntitySet="PRICEDETAILS" Role="ToRole_ANCILLERIES_TO_PRICEDETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_DETAILSSet" Association="ZBOOKING_SRV.BOOKING_TO_DETAILS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_DETAILS"/>
+                    <End EntitySet="DETAILS" Role="ToRole_BOOKING_TO_DETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="FLIGHTS_TO_PRICEDETAILS" Association="ZBOOKING_SRV.FLIGHTS_TO_PRICEDETAILS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="FLIGHTS" Role="FromRole_FLIGHTS_TO_PRICEDETAILS"/>
+                    <End EntitySet="PRICEDETAILS" Role="ToRole_FLIGHTS_TO_PRICEDETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_PERSREFSet" Association="ZBOOKING_SRV.BOOKING_TO_PERSREF"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_PERSREF"/>
+                    <End EntitySet="PERSREF" Role="ToRole_BOOKING_TO_PERSREF"/>
+                </AssociationSet>
+                <AssociationSet Name="FLIGHTS_TO_DETAILSSet" Association="ZBOOKING_SRV.FLIGHTS_TO_DETAILS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="FLIGHTS" Role="FromRole_FLIGHTS_TO_DETAILS"/>
+                    <End EntitySet="DETAILS" Role="ToRole_FLIGHTS_TO_DETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="HOTELS_TO_PRICEDETAILS_AssocSet" Association="ZBOOKING_SRV.HOTELS_TO_PRICEDETAILS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="HOTELS" Role="FromRole_HOTELS_TO_PRICEDETAILS"/>
+                    <End EntitySet="PRICEDETAILS" Role="ToRole_HOTELS_TO_PRICEDETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_EXTIDSSet" Association="ZBOOKING_SRV.BOOKING_TO_EXTIDS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_EXTIDS"/>
+                    <End EntitySet="BOOKING_EXTIDS" Role="ToRole_BOOKING_TO_EXTIDS"/>
+                </AssociationSet>
+                <AssociationSet Name="HOTELS_TO_EXTIDSSet" Association="ZBOOKING_SRV.HOTELS_TO_EXTIDS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="HOTELS" Role="FromRole_HOTELS_TO_EXTIDS"/>
+                    <End EntitySet="HOTEL_EXTIDS" Role="ToRole_HOTELS_TO_EXTIDS"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_ANCILLERIESSet" Association="ZBOOKING_SRV.BOOKING_TO_ANCILLERIES"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_ANCILLERIES"/>
+                    <End EntitySet="ANCILLARIES" Role="ToRole_BOOKING_TO_ANCILLERIES"/>
+                </AssociationSet>
+                <AssociationSet Name="HOTELS_TO_PERSREF_AssocSet" Association="ZBOOKING_SRV.HOTELS_TO_PERSREF"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="HOTELS" Role="FromRole_HOTELS_TO_PERSREF"/>
+                    <End EntitySet="PERSREF" Role="ToRole_HOTELS_TO_PERSREF"/>
+                </AssociationSet>
+                <AssociationSet Name="HOTELS_TO_ROOMSSet" Association="ZBOOKING_SRV.HOTELS_TO_ROOMS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="HOTELS" Role="FromRole_HOTELS_TO_ROOMS"/>
+                    <End EntitySet="ROOMS" Role="ToRole_HOTELS_TO_ROOMS"/>
+                </AssociationSet>
+                <AssociationSet Name="BOOKING_TO_MESSAGESSet" Association="ZBOOKING_SRV.BOOKING_TO_MESSAGES"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="BOOKING" Role="FromRole_BOOKING_TO_MESSAGES"/>
+                    <End EntitySet="MESSAGES" Role="ToRole_BOOKING_TO_MESSAGES"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self"
+                       href="http://testwebservices.hec.thomascook.com/sap/opu/odata/SAP/ZBOOKING_SRV/$metadata"
+                       xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version"
+                       href="http://testwebservices.hec.thomascook.com/sap/opu/odata/SAP/ZBOOKING_SRV/$metadata"
+                       xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

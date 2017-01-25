@@ -1,0 +1,178 @@
+{
+  "booking": {
+    "identifier": {
+      "bookingNumber": "1223374",
+      "bookingVersionOnTour": "2",
+      "bookingVersionTourOperator": "2",
+      "bookingUpdateDateOnTour": "30112016",
+      "bookingUpdateDateTourOperator": "27072016"
+    },
+    "general": {
+      "bookingStatus": "Booked",
+      "bookingDate": "20160501",
+      "departureDate": "18122016",
+      "returnDate": "02012017",
+      "destination": "",
+      "toCode": "33",
+      "brand": "BUC",
+      "brochureCode": "BUC",
+      "isLateBooking": "N"
+    },
+    "travelParticipant": [
+      {
+        "firstName": "MARCEL",
+        "lastName": "HIOB",
+        "age": "28",
+        "gender": "Male",
+        "relation": "Participant",
+        "travelParticipantIdOnTour": "4461293",
+        "language": "GER",
+        "birthDate": ""
+      },
+      {
+        "firstName": "SABRINA",
+        "lastName": "SCHAPPEL",
+        "age": "24",
+        "gender": "Female",
+        "relation": "Participant",
+        "travelParticipantIdOnTour": "4461294",
+        "language": "GER",
+        "birthDate": ""
+      },
+      {
+        "firstName": "DARIO",
+        "lastName": "SCHAPPEL",
+        "age": "3",
+        "gender": "Unknown",
+        "relation": "Child",
+        "travelParticipantIdOnTour": "4461295",
+        "language": "GER",
+        "birthDate": ""
+      },
+      {
+        "firstName": "MADLIN",
+        "lastName": "SCHAPPEL",
+        "age": "5",
+        "gender": "Unknown",
+        "relation": "Child",
+        "travelParticipantIdOnTour": "4461296",
+        "language": "GER",
+        "birthDate": ""
+      }
+    ],
+    "services": {
+      "accommodation": [
+        {
+          "accommodationCode": "40867",
+          "accommodationDescription": "TRENDY VERBENA BEACH",
+          "order": "489933",
+          "startDate": "18122016",
+          "startTime": "0000",
+          "endDate": "02012017",
+          "endTime": "0000",
+          "roomType": "A2D",
+          "boardType": "AI",
+          "status": "RQ",
+          "hasSharedRoom": "N",
+          "numberOfParticipants": "4",
+          "numberOfRooms": "1",
+          "withTransfer": "G",
+          "isExternalService": "I",
+          "notificationRequired": "J",
+          "needsTourGuideAssignment": "N",
+          "isExternalTransfer": "",
+          "travelParticipantAssignment": [
+            {
+              "travelParticipantId": "4461293"
+            },
+            {
+              "travelParticipantId": "4461294"
+            },
+            {
+              "travelParticipantId": "4461295"
+            },
+            {
+              "travelParticipantId": "4461296"
+            }
+          ],
+          "remark": [
+            {
+              "type": "A",
+              "text": "EKMS Hotel Code: 40165"
+            },
+            {
+              "type": "A",
+              "text": "EKMS Room Code: A2B"
+            },
+            {
+              "type": "A",
+              "text": "GIATA Code: 135744"
+            }
+          ]
+        }
+      ],
+      "transport": [
+        {
+          "transportCode": "XQ0141",
+          "transportDescription": "XQ0141",
+          "order": "1",
+          "startDate": "18122016",
+          "startTime": "1840",
+          "endDate": "18122016",
+          "endTime": "2305",
+          "transferType": "IN",
+          "departureAirport": "FRA",
+          "arrivalAirport": "AYT",
+          "carrierCode": "XQ",
+          "flightNumber": "0141",
+          "flightIdentifier": "XQ0141FRAAYT",
+          "numberOfParticipants": "4",
+          "travelParticipantAssignment": [
+            {
+              "travelParticipantId": "4461293"
+            },
+            {
+              "travelParticipantId": "4461294"
+            },
+            {
+              "travelParticipantId": "4461295"
+            },
+            {
+              "travelParticipantId": "4461296"
+            }
+          ]
+        },
+        {
+          "transportCode": "XQ0140",
+          "transportDescription": "XQ0140",
+          "order": "2",
+          "startDate": "02012017",
+          "startTime": "1555",
+          "endDate": "02012017",
+          "endTime": "1745",
+          "transferType": "OUT",
+          "departureAirport": "AYT",
+          "arrivalAirport": "FRA",
+          "carrierCode": "XQ",
+          "flightNumber": "0140",
+          "flightIdentifier": "XQ0140AYTFRA",
+          "numberOfParticipants": "4",
+          "travelParticipantAssignment": [
+            {
+              "travelParticipantId": "4461293"
+            },
+            {
+              "travelParticipantId": "4461294"
+            },
+            {
+              "travelParticipantId": "4461295"
+            },
+            {
+              "travelParticipantId": "4461296"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

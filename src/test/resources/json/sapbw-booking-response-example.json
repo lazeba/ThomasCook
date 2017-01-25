@@ -1,0 +1,92 @@
+{
+  "DestinationBk": {
+    "Destination": "MAD",
+    "DepartureTxt": "Frankfurt",
+    "DestinationTxt": "Madrid (Barajas)",
+    "Departure": "FRA",
+    "Prebooking": "N",
+    "Mainhotelcode": "HNV",
+    "MainhotelTxt": ""
+  },
+  "Changemanagement": {
+    "Zversion": "000",
+    "Status": "OK",
+    "Changetime": null,
+    "Changedate": 1462233600000
+  },
+  "CustomerBk": {
+    "Email": "customer@thomascookonline.com",
+    "Emergencyno": "12345678",
+    "Phone": "+440000000",
+    "Customerno": "115005070",
+    "Mobile": "+4412345678",
+    "Withchildren": ""
+  },
+  "Bookingkey": "12233742016050133",
+  "Originalvalues": {
+    "BefartO": "F",
+    "ZiellandO": "ESP",
+    "AbflugO": "FRA",
+    "OrtanO": "",
+    "ZielflugO": "MAD"
+  },
+  "SalesBk": {
+    "Agency": "AV63038",
+    "TouroperatorTxt": "TOURVITAL",
+    "AgencyTxt": "Tour Vital Touristik GmbH",
+    "Make": "FZUOR",
+    "Salestouroperator": "1",
+    "SalestouroperatorTxt": "Thomas Cook Deutschland",
+    "SalesoperatorTxt": "FEHLENDER VT-VERANSTALTER",
+    "Catalog": "",
+    "BusinessareaTxt": "<NO TEXT>",
+    "Complaintexists": "N",
+    "CatalogTxt": "",
+    "Extagency": "V63038",
+    "Touroperator": "34",
+    "Businessarea": "V",
+    "Salesoperator": "FZUORD",
+    "MakeTxt": "Ohne Marken-Zuordnung"
+  },
+  "Dates": {
+    "Travelyear": "2016",
+    "Customerdstartdate": null,
+    "Customerenddate": null,
+    "Bookingyear": "2016",
+    "Enddate": 1473984000000,
+    "Travelmonth": "09",
+    "Optiondate": null,
+    "Season": "S",
+    "Startdate": 1473206400000,
+    "Bookingmonth": "05",
+    "Zgeschja": "0000"
+  },
+  "Fullfilment": {
+    "Paymentclass": "",
+    "PaymentclassTxt": "",
+    "Paymentwish": "",
+    "Customerdocformat": "",
+    "PaymentwishTxt": ""
+  },
+  "MeasuresBk": {
+    "Fullpayer": 2,
+    "Partlypayer": 0,
+    "Pax": 2,
+    "Currency": "EUR",
+    "Traveldurationcategory": "",
+    "Adults": 2,
+    "Infants": 1,
+    "Revenue": 2198,
+    "Duration": 9,
+    "Children": 3,
+    "Prebookingdistance": 129,
+    "Ra": 1
+  },
+  "Key": {
+    "SourcesystemTxt": "",
+    "Bookingno": "1223374",
+    "Creationdate": null,
+    "Sourcesystem": "33"
+  },
+  "Msgid": ""
+}

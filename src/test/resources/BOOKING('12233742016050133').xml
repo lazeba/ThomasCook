@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entry xml:base="http://testwebservices.hec.thomascook.com/sap/opu/odata/SAP/ZBOOKING_SRV/"
+       xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+       xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">
+    <id>http://testwebservices.hec.thomascook.com/sap/opu/odata/SAP/ZBOOKING_SRV/BOOKING('12233742016050133')</id>
+    <title type="text">BOOKING('12233742016050133')</title>
+    <updated>2016-12-28T09:55:56Z</updated>
+    <category term="ZBOOKING_SRV.BOOKING" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+    <link href="BOOKING('12233742016050133')" rel="self" title="BOOKING"/>
+    <link href="BOOKING('12233742016050133')/BOOKING_EXTIDS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/BOOKING_EXTIDS"
+          type="application/atom+xml;type=feed" title="BOOKING_EXTIDS"/>
+    <link href="BOOKING('12233742016050133')/MESSAGES"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/MESSAGES"
+          type="application/atom+xml;type=feed" title="MESSAGES"/>
+    <link href="BOOKING('12233742016050133')/MARKETINGACTIONS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/MARKETINGACTIONS"
+          type="application/atom+xml;type=feed" title="MARKETINGACTIONS"/>
+    <link href="BOOKING('12233742016050133')/ANCILLARIES"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ANCILLARIES"
+          type="application/atom+xml;type=feed" title="ANCILLARIES"/>
+    <link href="BOOKING('12233742016050133')/DETAILS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/DETAILS"
+          type="application/atom+xml;type=feed" title="DETAILS"/>
+    <link href="BOOKING('12233742016050133')/OPTINS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/OPTINS"
+          type="application/atom+xml;type=feed" title="OPTINS"/>
+    <link href="BOOKING('12233742016050133')/PERSREF"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/PERSREF"
+          type="application/atom+xml;type=feed" title="PERSREF"/>
+    <link href="BOOKING('12233742016050133')/PRICEDETAILS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/PRICEDETAILS"
+          type="application/atom+xml;type=feed" title="PRICEDETAILS"/>
+    <link href="BOOKING('12233742016050133')/VOUCHER"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/VOUCHER"
+          type="application/atom+xml;type=feed" title="VOUCHER"/>
+    <link href="BOOKING('12233742016050133')/HOTELS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/HOTELS"
+          type="application/atom+xml;type=feed" title="HOTELS"/>
+    <link href="BOOKING('12233742016050133')/PARTICIPANTS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/PARTICIPANTS"
+          type="application/atom+xml;type=feed" title="PARTICIPANTS"/>
+    <link href="BOOKING('12233742016050133')/FLIGHTS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/FLIGHTS"
+          type="application/atom+xml;type=feed" title="FLIGHTS"/>
+    <link href="BOOKING('12233742016050133')/PREF"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/PREF" type="application/atom+xml;type=feed"
+          title="PREF"/>
+    <content type="application/xml">
+        <m:properties>
+            <d:DestinationBk m:type="ZBOOKING_SRV.DestinationBk">
+                <d:Mainhotelcode>HNV</d:Mainhotelcode>
+                <d:Prebooking>N</d:Prebooking>
+                <d:MainhotelTxt/>
+                <d:Departure>FRA</d:Departure>
+                <d:DepartureTxt>Frankfurt</d:DepartureTxt>
+                <d:Destination>MAD</d:Destination>
+                <d:DestinationTxt>Madrid (Barajas)</d:DestinationTxt>
+            </d:DestinationBk>
+            <d:Originalvalues m:type="ZBOOKING_SRV.Originalvalues">
+                <d:OrtanO/>
+                <d:BefartO>F</d:BefartO>
+                <d:ZiellandO>ESP</d:ZiellandO>
+                <d:ZielflugO>MAD</d:ZielflugO>
+                <d:AbflugO>FRA</d:AbflugO>
+            </d:Originalvalues>
+            <d:Fullfilment m:type="ZBOOKING_SRV.Fullfilment">
+                <d:Customerdocformat/>
+                <d:Paymentclass/>
+                <d:PaymentclassTxt/>
+                <d:Paymentwish/>
+                <d:PaymentwishTxt/>
+            </d:Fullfilment>
+            <d:CustomerBk m:type="ZBOOKING_SRV.CustomerBk">
+                <d:Customerno>115005070</d:Customerno>
+                <d:Withchildren/>
+                <d:Mobile/>
+                <d:Email/>
+                <d:Phone/>
+                <d:Emergencyno/>
+            </d:CustomerBk>
+            <d:MeasuresBk m:type="ZBOOKING_SRV.MeasuresBk">
+                <d:Ra>1</d:Ra>
+                <d:Pax>2</d:Pax>
+                <d:Fullpayer>2</d:Fullpayer>
+                <d:Partlypayer>0</d:Partlypayer>
+                <d:Adults>2</d:Adults>
+                <d:Children>0</d:Children>
+                <d:Infants>0</d:Infants>
+                <d:Currency>EUR</d:Currency>
+                <d:Revenue>2198.00</d:Revenue>
+                <d:Duration>9</d:Duration>
+                <d:Traveldurationcategory/>
+                <d:Prebookingdistance>129</d:Prebookingdistance>
+            </d:MeasuresBk>
+            <d:SalesBk m:type="ZBOOKING_SRV.SalesBk">
+                <d:Businessarea>V</d:Businessarea>
+                <d:BusinessareaTxt>&lt;NO TEXT&gt;</d:BusinessareaTxt>
+                <d:Make>FZUOR</d:Make>
+                <d:MakeTxt>Ohne Marken-Zuordnung</d:MakeTxt>
+                <d:Salesoperator>FZUORD</d:Salesoperator>
+                <d:SalesoperatorTxt>FEHLENDER VT-VERANSTALTER</d:SalesoperatorTxt>
+                <d:Catalog/>
+                <d:CatalogTxt/>
+                <d:Agency>AV63038</d:Agency>
+                <d:AgencyTxt>Tour Vital Touristik GmbH</d:AgencyTxt>
+                <d:Extagency>V63038</d:Extagency>
+                <d:Touroperator>34</d:Touroperator>
+                <d:TouroperatorTxt>TOURVITAL</d:TouroperatorTxt>
+                <d:Salestouroperator>1</d:Salestouroperator>
+                <d:SalestouroperatorTxt>Thomas Cook Deutschland</d:SalestouroperatorTxt>
+                <d:Complaintexists/>
+            </d:SalesBk>
+            <d:Dates m:type="ZBOOKING_SRV.Dates">
+                <d:Bookingyear>2016</d:Bookingyear>
+                <d:Bookingmonth>05</d:Bookingmonth>
+                <d:Optiondate m:null="true"/>
+                <d:Startdate>2016-09-07T00:00:00</d:Startdate>
+                <d:Enddate>2016-09-16T00:00:00</d:Enddate>
+                <d:Season>S</d:Season>
+                <d:Travelyear>2016</d:Travelyear>
+                <d:Travelmonth>09</d:Travelmonth>
+                <d:Customerdstartdate m:null="true"/>
+                <d:Customerenddate m:null="true"/>
+                <d:Zgeschja>0000</d:Zgeschja>
+            </d:Dates>
+            <d:Changemanagement m:type="ZBOOKING_SRV.Changemanagement">
+                <d:Zversion>000</d:Zversion>
+                <d:Status>OK</d:Status>
+                <d:Changedate>2016-05-03T00:00:00</d:Changedate>
+                <d:Changetime m:null="true"/>
+            </d:Changemanagement>
+            <d:Key m:type="ZBOOKING_SRV.Key">
+                <d:Bookingno>1223374</d:Bookingno>
+                <d:Creationdate>2016-05-01T00:00:00</d:Creationdate>
+                <d:Sourcesystem>33</d:Sourcesystem>
+                <d:SourcesystemTxt>&lt;NO TEXT&gt;</d:SourcesystemTxt>
+            </d:Key>
+            <d:Bookingkey>12233742016050133</d:Bookingkey>
+            <d:Msgid/>
+        </m:properties>
+    </content>
+</entry>

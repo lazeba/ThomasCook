@@ -1,0 +1,78 @@
+package com.thomascook.ids.sapbw.service;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.github.tcdl.msb.support.Utils;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.skyscreamer.jsonassert.JSONAssert;
+
+import java.net.URL;
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
+
+@RunWith(MockitoJUnitRunner.class)
+public class EnrichmentServiceTest {
+
+    static final String PATH_TO_REQUEST_PAYLOAD = "/json/in-message-example.json";
+    static final String PATH_TO_BOOKING_RESPONSE = "/json/sapbw-booking-response-example.json";
+    static final String PATH_TO_EXPECTED_BOOKING_PAYLOAD = "/json/out-message-example.json";
+
+    private EnrichmentService enrichmentService;
+    private ObjectMapper objectMapper = new ObjectMapper()
+            .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
+            .disable(JsonGenerator.Feature.ESCAPE_NON_ASCII);
+
+    @Before
+    public void setUp() {
+        enrichmentService = new EnrichmentService(objectMapper);
+    }
+
+    @Test
+    public void bookingInfoMappingTest() throws Exception {
+        JsonNode requestPayload = readJsonNode(PATH_TO_REQUEST_PAYLOAD);
+        Map bookingInfo = Utils.convert(readJsonNode(PATH_TO_BOOKING_RESPONSE), Map.class, objectMapper);
+        ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload, bookingInfo);
+
+        assertEquals("33", enrichedPayload.path("sourceSystem").asText());
+        assertEquals("1223374", enrichedPayload.path("bookingNumber").asText());
+        assertEquals("<NO TEXT>", enrichedPayload.path("businessArea").asText());
+        assertEquals("Tour Vital Touristik GmbH", enrichedPayload.path("shopCode").path("agent").asText());
+
+        assertEquals("N", enrichedPayload.path("hasComplaint").asText());
+        assertEquals(1, enrichedPayload.path("travelAmount").asInt());
+        assertEquals(2, enrichedPayload.path("numberOfParticipants").asInt());
+        assertEquals(2, enrichedPayload.path("numberOfAdults").asInt());
+        assertEquals(3, enrichedPayload.path("numberOfChildren").asInt());
+        assertEquals(1, enrichedPayload.path("numberOfInfants").asInt());
+        assertEquals("EUR", enrichedPayload.path("currency").asText());
+        assertEquals(9, enrichedPayload.path("duration").asInt());
+
+        assertEquals("115005070", enrichedPayload.path("customerId").asText());
+        assertEquals("+4412345678", enrichedPayload.path("booker").path("mobile").asText());
+        assertEquals("customer@thomascookonline.com", enrichedPayload.path("booker").path("bookerEmail").asText());
+        assertEquals("+440000000", enrichedPayload.path("booker").path("phone").asText());
+        assertEquals("12345678", enrichedPayload.path("booker").path("emergencyNumber").asText());
+    }
+
+    @Test
+    public void enrichBookingTest() throws Exception {
+        JsonNode requestPayload = readJsonNode(PATH_TO_REQUEST_PAYLOAD);
+        Map bookingInfo = Utils.convert(readJsonNode(PATH_TO_BOOKING_RESPONSE), Map.class, objectMapper);
+        JsonNode expectedJsonNode = readJsonNode(PATH_TO_EXPECTED_BOOKING_PAYLOAD);
+
+        ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload, bookingInfo);
+        JSONAssert.assertEquals(expectedJsonNode.toString(), enrichedPayload.toString(), true);
+    }
+
+    private JsonNode readJsonNode(String fileName) throws Exception {
+        URL resource = com.thomascook.ids.sapbw.service.EnrichmentServiceTest.class.getResource(fileName);
+        return objectMapper.readTree(resource);
+    }
+}

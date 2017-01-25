@@ -4,7 +4,7 @@ import org.apache.olingo.odata2.api.edm.EdmException;
 import org.apache.olingo.odata2.api.ep.EntityProviderException;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -13,7 +13,5 @@ import java.util.Map;
  */
 public interface SapBwBookingInfoService {
 
-    Map<String, Object> getBookingByKey(String key) throws IOException, EntityProviderException, EdmException;
-
-    Map<String, Object> getBookingByKey(String bookingId, Date bookingDate, String sourceSystemCode) throws EntityProviderException, EdmException, IOException;
+    Map<String, Object> getBookingByKey(String bookingId, LocalDate bookingDate, String sourceSystemCode) throws EntityProviderException, EdmException, IOException;
 }

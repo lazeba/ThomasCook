@@ -8,10 +8,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.time.format.DateTimeFormatter.BASIC_ISO_DATE;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -23,7 +24,7 @@ import static org.mockito.Mockito.*;
 public class SapBwBookingInfoServiceImplTest {
 
     private static final String BOOKING_KEY = "100020160501123";
-    private SapBwBookingInfoService sapBwBookingInfoService;
+    private SapBwBookingInfoServiceImpl sapBwBookingInfoService;
 
     @Mock
     private ODataCommunicationClient oDataCommunicationClientMock;
@@ -39,7 +40,7 @@ public class SapBwBookingInfoServiceImplTest {
     public void getBookingByKey() throws Exception {
         when(oDataCommunicationClientMock.getBookingEntry(BOOKING_KEY)).thenReturn(oDataEntryMock);
         when(oDataEntryMock.getProperties()).thenReturn(getBookingInfoProperties());
-        Map<String, Object> bookingInfo = sapBwBookingInfoService.getBookingByKey("1000", new SimpleDateFormat("yyyyMMdd").parse("20160501"), "123");
+        Map<String, Object> bookingInfo = sapBwBookingInfoService.getBookingByKey("1000", LocalDate.parse("20160501", BASIC_ISO_DATE), "123");
         assertNotNull(bookingInfo);
         verify(oDataCommunicationClientMock, times(1)).getBookingEntry(BOOKING_KEY);
         verify(oDataEntryMock, times(1)).getProperties();

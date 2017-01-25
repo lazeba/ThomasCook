@@ -16,19 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
+
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
 @Component
 public class ProcessingService {
 
     static final Logger LOG = LoggerFactory.getLogger(ProcessingService.class);
-
-    static final DateFormat BOOKING_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-    static final DateFormat SAPBW_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
     @Autowired
     Config config;
@@ -68,11 +64,13 @@ public class ProcessingService {
                         (request, responder) -> {
                             JsonNode booking = request.path("booking");
                             String bookingNumber = booking.path("identifier").path("bookingNumber").asText();
+                            LocalDate bookingDate = LocalDate.parse(booking.path("general").path("bookingDate").asText(), ISO_LOCAL_DATE);
+                            String sourceSystemCode = booking.path("general").path("toCode").asText();
 
                             LOG.info("Booking processing started: {}", bookingNumber);
                             LOG.debug("Message: {}", request);
 
-                            Map bookingInfo = bookingInfoService.getBookingByKey(buildBookingKey(booking));
+                            Map bookingInfo = bookingInfoService.getBookingByKey(bookingNumber, bookingDate, sourceSystemCode);
                             JsonNode payload = objectMapper.createObjectNode().set("booking", enrichmentService.enrichBooking(booking, bookingInfo));
 
                             msbContext.getObjectFactory()
@@ -82,22 +80,10 @@ public class ProcessingService {
                             LOG.info("Booking processed: {}", bookingNumber);
                         },
                         (exception, message) -> {
-                            LOG.error("Error processing message {}", message);
+                            LOG.error("Error processing message {} {}", message, exception.getMessage());
                         },
                         ObjectNode.class)
                 .listen();
         LOG.info("customer-sapbw-enrich-canonical-booking-microservice is listening namespace '{}' with routing key '{}'", fromNamespace, routingKey);
-    }
-
-    private String buildBookingKey(JsonNode bookingNode) throws ParseException {
-        String bookingNumber = bookingNode.path("identifier").path("bookingNumber").asText();
-        Date bookingDate = BOOKING_DATE_FORMAT.parse(bookingNode.path("general").path("bookingDate").asText());
-        String sourceSystemCode = bookingNode.path("general").path("toCode").asText();
-
-        return bookingNumber + SAPBW_DATE_FORMAT.format(bookingDate) + normalizeSourceSystemCode(sourceSystemCode);
-    }
-
-    private String normalizeSourceSystemCode(String sourceSystemCode) {
-        return sourceSystemCode.startsWith("0") ? sourceSystemCode.substring(1) : sourceSystemCode;
     }
 }

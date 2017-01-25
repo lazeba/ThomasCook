@@ -65,9 +65,9 @@ public class EnrichmentServiceTest {
     public void enrichBookingTest() throws Exception {
         JsonNode requestPayload = readJsonNode(PATH_TO_REQUEST_PAYLOAD);
         Map bookingInfo = Utils.convert(readJsonNode(PATH_TO_BOOKING_RESPONSE), Map.class, objectMapper);
-        JsonNode expectedJsonNode = readJsonNode(PATH_TO_EXPECTED_BOOKING_PAYLOAD);
+        JsonNode expectedJsonNode = readJsonNode(PATH_TO_EXPECTED_BOOKING_PAYLOAD).path("booking");
 
-        ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload, bookingInfo);
+        ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload.path("booking"), bookingInfo);
         JSONAssert.assertEquals(expectedJsonNode.toString(), enrichedPayload.toString(), true);
     }
 

@@ -1,6 +1,7 @@
 package com.thomascook.ids.sapbw.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.Sets;
 import com.typesafe.config.Config;
@@ -15,15 +16,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 @Component
 public class ProcessingService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProcessingService.class);
+    static final Logger LOG = LoggerFactory.getLogger(ProcessingService.class);
+
+    static final DateFormat BOOKING_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    static final DateFormat SAPBW_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
     @Autowired
     Config config;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Autowired
     MsbContext msbContext;
@@ -54,32 +65,36 @@ public class ProcessingService {
                                 .withMessageTemplate(messageTemplate)
                                 .withBindingKeys(Sets.newHashSet(routingKey))
                                 .build(),
-                        (booking, responder) -> {
+                        (request, responder) -> {
+                            JsonNode booking = request.path("booking");
+                            String bookingNumber = booking.path("identifier").path("bookingNumber").asText();
 
-                            String bookingNumber = booking.path("booking").path("identifier").path("bookingNumber").asText();
                             LOG.info("Booking processing started: {}", bookingNumber);
-                            LOG.debug("Message: {}", booking);
+                            LOG.debug("Message: {}", request);
 
                             Map bookingInfo = bookingInfoService.getBookingByKey(buildBookingKey(booking));
-                            JsonNode payload = enrichmentService.enrichBooking(booking, bookingInfo);
+                            JsonNode payload = objectMapper.createObjectNode().set("booking", enrichmentService.enrichBooking(booking, bookingInfo));
 
-                            msbContext.getObjectFactory().createRequester(toNamespace, requestOptions)
+                            msbContext.getObjectFactory()
+                                    .createRequesterForFireAndForget(toNamespace, requestOptions)
                                     .publish(payload);
 
                             LOG.info("Booking processed: {}", bookingNumber);
-
-                        }, ObjectNode.class)
+                        },
+                        (exception, message) -> {
+                            LOG.error("Error processing message {}", message);
+                        },
+                        ObjectNode.class)
                 .listen();
         LOG.info("customer-sapbw-enrich-canonical-booking-microservice is listening namespace '{}' with routing key '{}'", fromNamespace, routingKey);
     }
 
-    private String buildBookingKey(JsonNode bookingNode) {
-        JsonNode booking = bookingNode.path("booking");
-        String bookingNumber = booking.path("identifier").path("bookingNumber").asText();
-        String bookingDate = booking.path("general").path("bookingDate").asText();
-        String sourceSystemCode = booking.path("general").path("toCode").asText();
+    private String buildBookingKey(JsonNode bookingNode) throws ParseException {
+        String bookingNumber = bookingNode.path("identifier").path("bookingNumber").asText();
+        Date bookingDate = BOOKING_DATE_FORMAT.parse(bookingNode.path("general").path("bookingDate").asText());
+        String sourceSystemCode = bookingNode.path("general").path("toCode").asText();
 
-        return bookingNumber + bookingDate + normalizeSourceSystemCode(sourceSystemCode);
+        return bookingNumber + SAPBW_DATE_FORMAT.format(bookingDate) + normalizeSourceSystemCode(sourceSystemCode);
     }
 
     private String normalizeSourceSystemCode(String sourceSystemCode) {

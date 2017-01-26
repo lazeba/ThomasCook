@@ -66,9 +66,9 @@ public class SapBwConfiguration {
     }
 
     @Bean
-    public HealthCheckRegistry healthCheckRegistry() {
+    public HealthCheckRegistry healthCheckRegistry(SapBwHealthCheck healthCheck) {
         HealthCheckRegistry registry = new HealthCheckRegistry();
-        registry.register("SAP-BW status", new SapBwHealthCheck());
+        registry.register("SAP-BW status", healthCheck);
         return registry;
     }
 

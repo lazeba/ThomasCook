@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
+
+import static java.time.format.DateTimeFormatter.BASIC_ISO_DATE;
 
 /**
  * Created by Sergii Meleshko on 12/28/16.
@@ -27,22 +28,23 @@ public class SapBwBookingInfoServiceImpl implements SapBwBookingInfoService {
     }
 
     @Override
-    public Map<String, Object> getBookingByKey(String key) throws IOException, EntityProviderException, EdmException {
+    public Map<String, Object> getBookingByKey(String bookingId, LocalDate bookingDate, String sourceSystemCode) throws EntityProviderException, EdmException, IOException {
+        String bookingKey = new StringBuilder()
+                .append(bookingId)
+                .append(BASIC_ISO_DATE.format(bookingDate))
+                .append(normalizeSourceSystemCode(sourceSystemCode)).toString();
+
+        return getBookingByKey(bookingKey);
+    }
+
+    protected Map<String, Object> getBookingByKey(String key) throws IOException, EntityProviderException, EdmException {
 
         ODataEntry bookingEntry = oDataCommunicationClient.getBookingEntry(key);
 
         return bookingEntry.getProperties();
     }
 
-    @Override
-    public Map<String, Object> getBookingByKey(String bookingId, Date bookingDate, String sourceSystemCode) throws EntityProviderException, EdmException, IOException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-
-        String bookingKey = new StringBuilder()
-                .append(bookingId)
-                .append(dateFormat.format(bookingDate))
-                .append(sourceSystemCode).toString();
-
-        return getBookingByKey(bookingKey);
+    protected String normalizeSourceSystemCode(String sourceSystemCode) {
+        return sourceSystemCode.startsWith("0") ? sourceSystemCode.substring(1) : sourceSystemCode;
     }
 }

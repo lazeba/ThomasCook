@@ -32,9 +32,6 @@ public class SapBwUriFactory {
     public URI getBookingUri(String bookingKey) {
         return UriComponentsBuilder.fromHttpUrl(baseUri)
                 .pathSegment(BOOKING_SERVICE, String.format("BOOKING('%s')", bookingKey))
-//                .queryParam("$format", "xml")
-//                .queryParam("sap-client", "010")
-//                .queryParam("sap-language", "EN")
                 .build()
                 .toUri();
     }

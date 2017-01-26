@@ -1,6 +1,7 @@
 package com.thomascook.ids.sapbw.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.Sets;
 import com.typesafe.config.Config;
@@ -15,15 +16,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.Map;
+
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
 @Component
 public class ProcessingService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProcessingService.class);
+    static final Logger LOG = LoggerFactory.getLogger(ProcessingService.class);
 
     @Autowired
     Config config;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Autowired
     MsbContext msbContext;
@@ -54,35 +61,29 @@ public class ProcessingService {
                                 .withMessageTemplate(messageTemplate)
                                 .withBindingKeys(Sets.newHashSet(routingKey))
                                 .build(),
-                        (booking, responder) -> {
+                        (request, responder) -> {
+                            JsonNode booking = request.path("booking");
+                            String bookingNumber = booking.path("identifier").path("bookingNumber").asText();
+                            LocalDate bookingDate = LocalDate.parse(booking.path("general").path("bookingDate").asText(), ISO_LOCAL_DATE);
+                            String sourceSystemCode = booking.path("general").path("toCode").asText();
 
-                            String bookingNumber = booking.path("booking").path("identifier").path("bookingNumber").asText();
                             LOG.info("Booking processing started: {}", bookingNumber);
-                            LOG.debug("Message: {}", booking);
+                            LOG.debug("Message: {}", request);
 
-                            Map bookingInfo = bookingInfoService.getBookingByKey(buildBookingKey(booking));
-                            JsonNode payload = enrichmentService.enrichBooking(booking, bookingInfo);
+                            Map bookingInfo = bookingInfoService.getBookingByKey(bookingNumber, bookingDate, sourceSystemCode);
+                            JsonNode payload = objectMapper.createObjectNode().set("booking", enrichmentService.enrichBooking(booking, bookingInfo));
 
-                            msbContext.getObjectFactory().createRequester(toNamespace, requestOptions)
+                            msbContext.getObjectFactory()
+                                    .createRequesterForFireAndForget(toNamespace, requestOptions)
                                     .publish(payload);
 
                             LOG.info("Booking processed: {}", bookingNumber);
-
-                        }, ObjectNode.class)
+                        },
+                        (exception, message) -> {
+                            LOG.error("Error processing message {} {}", message, exception.getMessage());
+                        },
+                        ObjectNode.class)
                 .listen();
         LOG.info("customer-sapbw-enrich-canonical-booking-microservice is listening namespace '{}' with routing key '{}'", fromNamespace, routingKey);
-    }
-
-    private String buildBookingKey(JsonNode bookingNode) {
-        JsonNode booking = bookingNode.path("booking");
-        String bookingNumber = booking.path("identifier").path("bookingNumber").asText();
-        String bookingDate = booking.path("general").path("bookingDate").asText();
-        String sourceSystemCode = booking.path("general").path("toCode").asText();
-
-        return bookingNumber + bookingDate + normalizeSourceSystemCode(sourceSystemCode);
-    }
-
-    private String normalizeSourceSystemCode(String sourceSystemCode) {
-        return sourceSystemCode.startsWith("0") ? sourceSystemCode.substring(1) : sourceSystemCode;
     }
 }

@@ -1,4 +1,4 @@
-# customer-sapbw-enrich-canonical-booking-microservice
+# sapbw-enrich-booking microservice
 
 ## Overview
 
@@ -37,7 +37,7 @@ mvn clean install -P DisableDbITests
 The microservice is a standalone Java application:
 
 ```
-java -jar fat-customer-sapbw-enrich-canonical-booking-microservice-*.jar
+java -jar fat-sapbw-enrich-booking-*.jar
 ```
 
 ## Configuration

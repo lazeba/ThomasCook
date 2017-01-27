@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.thomascook.ids.sapbw</groupId>
-    <artifactId>customer-sapbw-enrich-canonical-booking-microservice</artifactId>
+    <artifactId>sapbw-enrich-booking</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>jar</packaging>
@@ -15,9 +15,9 @@
     </parent>
 
     <scm>
-        <connection>scm:git:https://github.com/ThomasCookOnline/customer-sapbw-enrich-canonical-booking-microservice.git</connection>
-        <developerConnection>scm:git:https://github.com/ThomasCookOnline/customer-sapbw-enrich-canonical-booking-microservice.git</developerConnection>
-        <url>https://github.com/ThomasCookOnline/customer-sapbw-enrich-canonical-booking-microservice</url>
+        <connection>scm:git:https://github.com/ThomasCookOnline/sapbw-enrich-booking-microservice.git</connection>
+        <developerConnection>scm:git:https://github.com/ThomasCookOnline/sapbw-enrich-booking-microservice.git</developerConnection>
+        <url>https://github.com/ThomasCookOnline/sapbw-enrich-booking-microservice</url>
     </scm>
 
     <distributionManagement>

@@ -1,17 +1,17 @@
 --- # continuous delivery pipeline settings used by the jenkins-jobdsl jobs
 pipeline:
   type: java
-  title: customer-sapbw-enrich-canonical-booking-microservice
+  title: sapbw-enrich-booking
   group: microservice
 jdk: jdk-8u40
 chef:
-  role: customer-sapbw-enrich-canonical-booking-microservice
-  app_name: customer-sapbw-enrich-canonical-booking-microservice
+  role: sapbw-enrich-booking
+  app_name: sapbw-enrich-booking
 maven:
   options: -DMSB_BROKER_HOST="rabbitmq-int.thomascook.io" -DMSB_BROKER_PORT="5672" -DMSB_BROKER_USER_NAME="tcuser" -DMSB_BROKER_PASSWORD="T00easy!" -DMSB_BROKER_VIRTUAL_HOST="/tcuser"
   artifact_folder: .
   group: com.thomascook.ids.sapbw
-  artifact: customer-sapbw-enrich-canonical-booking-microservice
+  artifact: sapbw-enrich-booking
   packaging: jar
 notifications:
   build_fail: yuriy.savchuk@thomascookonline.com, igor.moroz@thomascookonline.com

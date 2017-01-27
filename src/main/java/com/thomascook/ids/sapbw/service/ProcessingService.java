@@ -84,6 +84,6 @@ public class ProcessingService {
                         },
                         ObjectNode.class)
                 .listen();
-        LOG.info("customer-sapbw-enrich-canonical-booking-microservice is listening namespace '{}' with routing key '{}'", fromNamespace, routingKey);
+        LOG.info("sapbw-enrich-booking microservice is listening namespace '{}' with routing key '{}'", fromNamespace, routingKey);
     }
 }

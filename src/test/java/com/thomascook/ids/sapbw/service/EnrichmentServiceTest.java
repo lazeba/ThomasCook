@@ -43,7 +43,7 @@ public class EnrichmentServiceTest {
         assertEquals("33", enrichedPayload.path("sourceSystem").asText());
         assertEquals("1223374", enrichedPayload.path("bookingNumber").asText());
         assertEquals("<NO TEXT>", enrichedPayload.path("businessArea").asText());
-        assertEquals("Tour Vital Touristik GmbH", enrichedPayload.path("shopCode").path("agent").asText());
+        assertEquals("Tour Vital Touristik GmbH", enrichedPayload.path("agent").path("shopCode").asText());
 
         assertEquals("N", enrichedPayload.path("hasComplaint").asText());
         assertEquals(1, enrichedPayload.path("travelAmount").asInt());

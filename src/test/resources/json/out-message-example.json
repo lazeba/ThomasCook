@@ -177,8 +177,8 @@
     "sourceSystem": "33",
     "bookingNumber": "1223374",
     "businessArea": "<NO TEXT>",
-    "shopCode": {
-      "agent": "Tour Vital Touristik GmbH"
+    "agent": {
+      "shopCode": "Tour Vital Touristik GmbH"
     },
     "hasComplaint": "N",
     "travelAmount": 1,

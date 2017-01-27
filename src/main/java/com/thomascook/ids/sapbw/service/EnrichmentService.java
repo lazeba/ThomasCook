@@ -45,7 +45,7 @@ public class EnrichmentService {
         // map from SalesBk node
         JsonNode salesBkNode = bookingInfo.path("SalesBk");
         booking.set("businessArea", salesBkNode.path("BusinessareaTxt"));
-        booking.set("shopCode", objectMapper.createObjectNode().set("agent", salesBkNode.path("AgencyTxt")));
+        booking.set("agent", objectMapper.createObjectNode().set("shopCode", salesBkNode.path("AgencyTxt")));
         booking.set("hasComplaint", salesBkNode.path("Complaintexists"));
 
         // map from MeasuresBk node

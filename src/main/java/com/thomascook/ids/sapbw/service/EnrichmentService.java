@@ -39,7 +39,7 @@ public class EnrichmentService {
     private void mapBookingInfo(ObjectNode booking, ObjectNode bookingInfo) {
         // map from Key node
         JsonNode keyNode = bookingInfo.path("Key");
-        booking.set("sourceSystem", keyNode.path("Sourcesystem"));
+        booking.set("sourceSystem", keyNode.path("SourcesystemTxt"));
         booking.set("bookingNumber", keyNode.path("Bookingno"));
 
         // map from SalesBk node

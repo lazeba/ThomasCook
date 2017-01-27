@@ -262,11 +262,11 @@ Example of a message that is published to the bus:
           }
         ]
       },
-      "sourceSystem": "00000000",
+      "sourceSystem": "33",
       "bookingNumber": "",
       "businessArea": "<NO TEXT>",
-      "shopCode": {
-        "agent": "Tour Vital Touristik GmbH"
+      "agent": {
+        "shopCode": "Tour Vital Touristik GmbH"
       },
       "hasComplaint": "",
       "travelAmount": 1,

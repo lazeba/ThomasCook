@@ -17,7 +17,7 @@ public class SapBwApplicationEnvironmentPreparedEventListener implements Applica
 
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent applicationEnvironmentPreparedEvent) {
-        LOG.info("Starting customer-sapbw-enrich-canonical-booking-microservice...");
+        LOG.info("Starting sapbw-enrich-booking microservice...");
         Config maskedConfig = SapBwApplication.CONFIG
                 .withValue("msbConfig.brokerConfig.password", ConfigValueFactory.fromAnyRef("xxx"));
         LOG.info("Using configuration: {}", maskedConfig.root().render());

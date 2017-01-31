@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.Sets;
 import com.typesafe.config.Config;
-import io.github.tcdl.msb.api.MessageTemplate;
-import io.github.tcdl.msb.api.MsbContext;
-import io.github.tcdl.msb.api.RequestOptions;
-import io.github.tcdl.msb.api.ResponderOptions;
+import io.github.tcdl.msb.api.*;
 import io.github.tcdl.msb.config.ConfigurationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,9 +54,11 @@ public class ProcessingService {
                 .build();
 
         msbContext.getObjectFactory()
-                .createResponderServer(fromNamespace, new ResponderOptions.Builder()
+                .createResponderServer(fromNamespace, new AmqpResponderOptions.Builder()
+                                .withExchangeType(ExchangeType.TOPIC)
                                 .withMessageTemplate(messageTemplate)
                                 .withBindingKeys(Sets.newHashSet(routingKey))
+
                                 .build(),
                         (request, responder) -> {
                             JsonNode booking = request.path("booking");

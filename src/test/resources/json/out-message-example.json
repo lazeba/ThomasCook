@@ -180,7 +180,7 @@
     "agent": {
       "shopCode": "Tour Vital Touristik GmbH"
     },
-    "hasComplaint": "N",
+    "hasComplaint": false,
     "travelAmount": 1,
     "numberOfParticipants": 2,
     "numberOfAdults": 2,

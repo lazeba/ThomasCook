@@ -2,14 +2,22 @@ package com.thomascook.ids.sapbw.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.BooleanNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 import io.github.tcdl.msb.support.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 @Component
 public class EnrichmentService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(EnrichmentService.class);
+
+    public static final TextNode EMPTY_VALUE = TextNode.valueOf("");
 
     private final ObjectMapper objectMapper;
 
@@ -46,7 +54,7 @@ public class EnrichmentService {
         JsonNode salesBkNode = bookingInfo.path("SalesBk");
         booking.set("businessArea", salesBkNode.path("BusinessareaTxt"));
         booking.set("agent", objectMapper.createObjectNode().set("shopCode", salesBkNode.path("AgencyTxt")));
-        booking.set("hasComplaint", salesBkNode.path("Complaintexists"));
+        booking.set("hasComplaint", complaintExists(salesBkNode.path("Complaintexists")));
 
         // map from MeasuresBk node
         JsonNode measuresBkNode = bookingInfo.path("MeasuresBk");
@@ -68,5 +76,23 @@ public class EnrichmentService {
         bookerNode.set("phone", customerBkNode.path("Phone"));
         bookerNode.set("emergencyNumber", customerBkNode.path("Emergencyno"));
         booking.set("booker", bookerNode);
+    }
+
+    private JsonNode complaintExists(JsonNode node) {
+        if(node == null || node.isNull() || node.isMissingNode()) {
+            return null;
+        }
+        switch (node.asText()) {
+            case "Y": {
+                return BooleanNode.TRUE;
+            }
+            case "N": {
+                return BooleanNode.FALSE;
+            }
+            default: {
+                LOG.warn("Can't convert Complaintexists value {}", node);
+                return EMPTY_VALUE;
+            }
+        }
     }
 }

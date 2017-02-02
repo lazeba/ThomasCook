@@ -32,7 +32,7 @@ public class SapBwBookingInfoServiceImpl implements SapBwBookingInfoService {
         String bookingKey = new StringBuilder()
                 .append(bookingId)
                 .append(BASIC_ISO_DATE.format(bookingDate))
-                .append(normalizeSourceSystemCode(sourceSystemCode)).toString();
+                .append(sourceSystemCode).toString();
 
         return getBookingByKey(bookingKey);
     }
@@ -42,9 +42,5 @@ public class SapBwBookingInfoServiceImpl implements SapBwBookingInfoService {
         ODataEntry bookingEntry = oDataCommunicationClient.getBookingEntry(key);
 
         return bookingEntry.getProperties();
-    }
-
-    protected String normalizeSourceSystemCode(String sourceSystemCode) {
-        return sourceSystemCode.startsWith("0") ? sourceSystemCode.substring(1) : sourceSystemCode;
     }
 }

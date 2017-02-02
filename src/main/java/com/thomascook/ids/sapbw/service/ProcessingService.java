@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Optional;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
@@ -34,6 +35,9 @@ public class ProcessingService {
 
     @Autowired
     MessageTemplate messageTemplate;
+
+    @Autowired
+    SourceCodeResolver sourceCodeResolver;
 
     @Autowired
     SapBwBookingInfoService bookingInfoService;
@@ -62,14 +66,21 @@ public class ProcessingService {
                                 .build(),
                         (request, responder) -> {
                             JsonNode booking = request.path("booking");
+
                             String bookingNumber = booking.path("identifier").path("bookingNumber").asText();
+                            String tourOperatorCode = booking.path("general").path("toCode").asText();
+                            Optional<String> sourceSystemCode = sourceCodeResolver.resolve(tourOperatorCode);
                             LocalDate bookingDate = LocalDate.parse(booking.path("general").path("bookingDate").asText(), ISO_LOCAL_DATE);
-                            String sourceSystemCode = booking.path("general").path("toCode").asText();
+
+                            if (!sourceSystemCode.isPresent()) {
+                                LOG.error("Couldn't resolve source system code by tour operator code {} for booking {}", tourOperatorCode, bookingNumber);
+                                return;
+                            }
 
                             LOG.info("Booking processing started: {}", bookingNumber);
                             LOG.debug("Message: {}", request);
 
-                            Map bookingInfo = bookingInfoService.getBookingByKey(bookingNumber, bookingDate, sourceSystemCode);
+                            Map bookingInfo = bookingInfoService.getBookingByKey(bookingNumber, bookingDate, sourceSystemCode.get());
                             JsonNode payload = objectMapper.createObjectNode().set("booking", enrichmentService.enrichBooking(booking, bookingInfo));
 
                             msbContext.getObjectFactory()

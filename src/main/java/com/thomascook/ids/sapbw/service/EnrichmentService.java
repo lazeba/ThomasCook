@@ -44,38 +44,40 @@ public class EnrichmentService {
         return node;
     }
 
-    private void mapBookingInfo(ObjectNode booking, ObjectNode bookingInfo) {
+    private void mapBookingInfo(ObjectNode bookingNode, ObjectNode bookingInfo) {
+        ObjectNode generalNode = (ObjectNode)bookingNode.path("general");
+
         // map from Key node
         JsonNode keyNode = bookingInfo.path("Key");
-        booking.set("sourceSystem", keyNode.path("SourcesystemTxt"));
-        booking.set("bookingNumber", keyNode.path("Bookingno"));
+        bookingNode.set("sourceSystem", keyNode.path("SourcesystemTxt"));
+        bookingNode.set("bookingNumber", keyNode.path("Bookingno"));
 
         // map from SalesBk node
         JsonNode salesBkNode = bookingInfo.path("SalesBk");
-        booking.set("businessArea", salesBkNode.path("BusinessareaTxt"));
-        booking.set("agent", objectMapper.createObjectNode().set("shopCode", salesBkNode.path("AgencyTxt")));
-        booking.set("hasComplaint", complaintExists(salesBkNode.path("Complaintexists")));
+        bookingNode.set("businessArea", salesBkNode.path("BusinessareaTxt"));
+        bookingNode.set("agent", objectMapper.createObjectNode().set("shopCode", salesBkNode.path("AgencyTxt")));
+        generalNode.set("hasComplaint", complaintExists(salesBkNode.path("Complaintexists")));
 
         // map from MeasuresBk node
         JsonNode measuresBkNode = bookingInfo.path("MeasuresBk");
-        booking.set("travelAmount", measuresBkNode.path("Ra"));
-        booking.set("numberOfParticipants", measuresBkNode.path("Pax"));
-        booking.set("numberOfAdults", measuresBkNode.path("Adults"));
-        booking.set("numberOfChildren", measuresBkNode.path("Children"));
-        booking.set("numberOfInfants", measuresBkNode.path("Infants"));
-        booking.set("currency", measuresBkNode.path("Currency"));
-        booking.set("duration", measuresBkNode.path("Duration"));
+        generalNode.set("travelAmount", measuresBkNode.path("Ra"));
+        generalNode.set("numberOfParticipants", measuresBkNode.path("Pax"));
+        generalNode.set("numberOfAdults", measuresBkNode.path("Adults"));
+        generalNode.set("numberOfChildren", measuresBkNode.path("Children"));
+        generalNode.set("numberOfInfants", measuresBkNode.path("Infants"));
+        generalNode.set("currency", measuresBkNode.path("Currency"));
+        generalNode.set("duration", measuresBkNode.path("Duration"));
 
         // map from CustomerBk node
         JsonNode customerBkNode = bookingInfo.path("CustomerBk");
-        booking.set("customerId", customerBkNode.path("Customerno"));
+        generalNode.set("customerId", customerBkNode.path("Customerno"));
 
         ObjectNode bookerNode = objectMapper.createObjectNode();
         bookerNode.set("mobile", customerBkNode.path("Mobile"));
         bookerNode.set("bookerEmail", customerBkNode.path("Email"));
         bookerNode.set("phone", customerBkNode.path("Phone"));
         bookerNode.set("emergencyNumber", customerBkNode.path("Emergencyno"));
-        booking.set("booker", bookerNode);
+        bookingNode.set("booker", bookerNode);
     }
 
     private JsonNode complaintExists(JsonNode node) {

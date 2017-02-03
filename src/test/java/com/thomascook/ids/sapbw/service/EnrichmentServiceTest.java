@@ -21,9 +21,9 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class EnrichmentServiceTest {
 
-    static final String PATH_TO_REQUEST_PAYLOAD = "/json/in-message-example.json";
+    static final String PATH_TO_REQUEST_PAYLOAD = "/json/in-payload-example.json";
     static final String PATH_TO_BOOKING_RESPONSE = "/json/sapbw-booking-response-example.json";
-    static final String PATH_TO_EXPECTED_BOOKING_PAYLOAD = "/json/out-message-example.json";
+    static final String PATH_TO_EXPECTED_BOOKING_PAYLOAD = "/json/out-payload-example.json";
 
     private EnrichmentService enrichmentService;
     private ObjectMapper objectMapper = new ObjectMapper()
@@ -39,23 +39,23 @@ public class EnrichmentServiceTest {
     public void bookingInfoMappingTest() throws Exception {
         JsonNode requestPayload = readJsonNode(PATH_TO_REQUEST_PAYLOAD);
         Map bookingInfo = Utils.convert(readJsonNode(PATH_TO_BOOKING_RESPONSE), Map.class, objectMapper);
-        ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload, bookingInfo);
+        ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload.path("booking"), bookingInfo);
 
         assertEquals("34", enrichedPayload.path("sourceSystem").asText());
         assertEquals("1223374", enrichedPayload.path("bookingNumber").asText());
         assertEquals("<NO TEXT>", enrichedPayload.path("businessArea").asText());
         assertEquals("Tour Vital Touristik GmbH", enrichedPayload.path("agent").path("shopCode").asText());
 
-        assertFalse(enrichedPayload.path("hasComplaint").asBoolean());
-        assertEquals(1, enrichedPayload.path("travelAmount").asInt());
-        assertEquals(2, enrichedPayload.path("numberOfParticipants").asInt());
-        assertEquals(2, enrichedPayload.path("numberOfAdults").asInt());
-        assertEquals(3, enrichedPayload.path("numberOfChildren").asInt());
-        assertEquals(1, enrichedPayload.path("numberOfInfants").asInt());
-        assertEquals("EUR", enrichedPayload.path("currency").asText());
-        assertEquals(9, enrichedPayload.path("duration").asInt());
+        assertFalse(enrichedPayload.path("general").path("hasComplaint").asBoolean());
+        assertEquals(1, enrichedPayload.path("general").path("travelAmount").asInt());
+        assertEquals(2, enrichedPayload.path("general").path("numberOfParticipants").asInt());
+        assertEquals(2, enrichedPayload.path("general").path("numberOfAdults").asInt());
+        assertEquals(3, enrichedPayload.path("general").path("numberOfChildren").asInt());
+        assertEquals(1, enrichedPayload.path("general").path("numberOfInfants").asInt());
+        assertEquals("EUR", enrichedPayload.path("general").path("currency").asText());
+        assertEquals(9, enrichedPayload.path("general").path("duration").asInt());
 
-        assertEquals("115005070", enrichedPayload.path("customerId").asText());
+        assertEquals("115005070", enrichedPayload.path("general").path("customerId").asText());
         assertEquals("+4412345678", enrichedPayload.path("booker").path("mobile").asText());
         assertEquals("customer@thomascookonline.com", enrichedPayload.path("booker").path("bookerEmail").asText());
         assertEquals("+440000000", enrichedPayload.path("booker").path("phone").asText());
@@ -68,18 +68,18 @@ public class EnrichmentServiceTest {
         JsonNode response = readJsonNode(PATH_TO_BOOKING_RESPONSE);
 
         ((ObjectNode)response.path("SalesBk")).put("Complaintexists", "Y");
-        ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload, Utils.convert(response, Map.class, objectMapper));
-        assertTrue(enrichedPayload.path("hasComplaint").isBoolean());
-        assertTrue(enrichedPayload.path("hasComplaint").asBoolean());
+        ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload.path("booking"), Utils.convert(response, Map.class, objectMapper));
+        assertTrue(enrichedPayload.path("general").path("hasComplaint").isBoolean());
+        assertTrue(enrichedPayload.path("general").path("hasComplaint").asBoolean());
 
         ((ObjectNode)response.path("SalesBk")).put("Complaintexists", "N");
-        enrichedPayload = enrichmentService.enrichBooking(requestPayload, Utils.convert(response, Map.class, objectMapper));
-        assertTrue(enrichedPayload.path("hasComplaint").isBoolean());
-        assertFalse(enrichedPayload.path("hasComplaint").asBoolean());
+        enrichedPayload = enrichmentService.enrichBooking(requestPayload.path("booking"), Utils.convert(response, Map.class, objectMapper));
+        assertTrue(enrichedPayload.path("general").path("hasComplaint").isBoolean());
+        assertFalse(enrichedPayload.path("general").path("hasComplaint").asBoolean());
 
         ((ObjectNode)response.path("SalesBk")).put("Complaintexists", MissingNode.getInstance());
-        enrichedPayload = enrichmentService.enrichBooking(requestPayload, Utils.convert(response, Map.class, objectMapper));
-        assertTrue(enrichedPayload.path("hasComplaint").isNull());
+        enrichedPayload = enrichmentService.enrichBooking(requestPayload.path("booking"), Utils.convert(response, Map.class, objectMapper));
+        assertTrue(enrichedPayload.path("general").path("hasComplaint").isNull());
     }
 
     @Test

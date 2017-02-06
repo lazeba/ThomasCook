@@ -12,43 +12,43 @@ import java.net.URI;
  */
 public class SapBwUriFactory {
     private static final String METADATA = "$metadata";
-    private static final String BOOKING_SERVICE = "ZBOOKING_SRV";
-    private static final String CUSTOMER_SERVICE = "ZCUSTOMER_SRV";
+    private static final String MSG_HEADER = "MSG_HEADER(Requester='TST')";
+    private static final String CUSTOMER_SERVICE_MAINDATA_TEMPLATE = "CU_MAINDATA(Customerno='%s',Businessarea='%s')";
+    private static final String BOOKING_SERVICE_MAINDATA_TEMPLATE = "BOOKING('%s')";
 
-    private final String baseUri;
+    private final String bookingUrl;
+    private final String customerUrl; //todo clarify - define - format of link - is same for booking service
 
     @Autowired
     public SapBwUriFactory(Config config) {
-        this.baseUri = config.getString("sap-bw-de.url");
+        this.bookingUrl = config.getString("sap-bw-de.booking-url");
+        this.customerUrl = config.getString("sap-bw-de.customer-url");//todo clarify-for-difference-with-booking-service base uri
     }
 
     public URI getBookingMetadataUri() {
-        return UriComponentsBuilder.fromHttpUrl(baseUri)
-                .pathSegment(BOOKING_SERVICE, METADATA)
+        return UriComponentsBuilder.fromHttpUrl(bookingUrl)
+                .path(METADATA)
                 .build()
                 .toUri();
     }
 
     public URI getBookingUri(String bookingKey) {
-        return UriComponentsBuilder.fromHttpUrl(baseUri)
-                .pathSegment(BOOKING_SERVICE, String.format("BOOKING('%s')", bookingKey))
+        return UriComponentsBuilder.fromHttpUrl(bookingUrl)
+                .path(String.format(BOOKING_SERVICE_MAINDATA_TEMPLATE, bookingKey))
                 .build()
                 .toUri();
     }
 
     public URI getCustomerMetadataUri() {
-        return UriComponentsBuilder.fromHttpUrl(baseUri)
-                .pathSegment(CUSTOMER_SERVICE, METADATA)
+        return UriComponentsBuilder.fromHttpUrl(customerUrl)
+                .path(METADATA)
                 .build()
                 .toUri();
     }
 
-    public URI getCustomerUri(String customerId) {
-        return UriComponentsBuilder.fromHttpUrl(baseUri)
-                .pathSegment(CUSTOMER_SERVICE, String.format("CU_MAINDATA('%s')", customerId))
-                .queryParam("$format", "xml")
-                .queryParam("sap-client", "010")
-                .queryParam("sap-language", "EN")
+    public URI getCustomerUri(String customerNo, String businessArea) {
+        return UriComponentsBuilder.fromHttpUrl(customerUrl)
+                .pathSegment(MSG_HEADER, String.format(CUSTOMER_SERVICE_MAINDATA_TEMPLATE, customerNo, businessArea))
                 .build()
                 .toUri();
     }

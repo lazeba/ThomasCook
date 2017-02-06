@@ -30,7 +30,7 @@ public class SapBwUriFactoryTest {
     public void getBookingMetadataUri() throws Exception {
         URI bookingMetadataUri = uriFactory.getBookingMetadataUri();
         assertNotNull(bookingMetadataUri);
-        assertEquals("/ZBOOKING_SRV/$metadata", bookingMetadataUri.getPath().trim());
+        assertEquals("/$metadata", bookingMetadataUri.getPath().trim());
     }
 
     @Test
@@ -38,22 +38,23 @@ public class SapBwUriFactoryTest {
         String bookingKey = "booking-key";
         URI bookingUri = uriFactory.getBookingUri(bookingKey);
         assertNotNull(bookingUri);
-        assertEquals("/ZBOOKING_SRV/BOOKING('" + bookingKey + "')", bookingUri.getPath().trim());
+        assertEquals("/BOOKING('" + bookingKey + "')", bookingUri.getPath().trim());
     }
 
     @Test
     public void getCustomerMetadataUri() throws Exception {
         URI customerMetadataUri = uriFactory.getCustomerMetadataUri();
         assertNotNull(customerMetadataUri);
-        assertEquals("/ZCUSTOMER_SRV/$metadata", customerMetadataUri.getPath().trim());
+        assertEquals("/$metadata", customerMetadataUri.getPath().trim());
     }
 
     @Test
     public void getCustomerUri() throws Exception {
-        String customerId = "customer-id";
-        URI customerUri = uriFactory.getCustomerUri(customerId);
+        String customerNo = "070184007";
+        String businessArea = "0";
+        URI customerUri = uriFactory.getCustomerUri(customerNo, businessArea);
         assertNotNull(customerUri);
-        assertEquals("/ZCUSTOMER_SRV/CU_MAINDATA('" + customerId + "')", customerUri.getPath().trim());
+        assertEquals("/MSG_HEADER(Requester='TST')/CU_MAINDATA(Customerno='" + customerNo + "',Businessarea='0')", customerUri.getPath().trim());
     }
 
 }

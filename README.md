@@ -53,7 +53,8 @@ The microservice is based on `msb-java` and supports the usual set of environmen
 
 Additionally the microservice supports specific environment variables:
 
-- `SAPBW_URL` - SAP-BW url. Defaults to `https://testwebservices.hec.thomascook.com/sap/opu/odata/SAP/`.
+- `SAPBW_BOOKING_URL` - SAP-BW Booking service url. Defaults to `https://testwebservices.hec.thomascook.com/sap/opu/odata/SAP/ZBOOKING_SRV`.
+- `SAPBW_CUSTOMER_URL` - SAP-BW Booking service url. Defaults to `https://testwebservices.hec.thomascook.com/zcdwh_gw/sap/opu/odata/SAP/ZCUSTOMER_SRV/`.
 - `SAPBW_USERNAME` - SAP-BW user name. Defaults to `TCIP1`.
 - `SAPBW_PASSWORD` - SAP-BW password. Defaults to `Init123!`.
 

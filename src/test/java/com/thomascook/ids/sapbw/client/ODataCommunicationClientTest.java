@@ -38,7 +38,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class ODataCommunicationClientTest {
 
-    public static final String CUSTOMER_BK_PROPERTY = "CustomerBk";
+    static final String CUSTOMER_BK_PROPERTY = "CustomerBk";
     String PATH_TO_BOOKING_METADATA = "ZBOOKING_SRV_metadata.xml";
     String PATH_TO_BOOKING_CONTENT = "BOOKING('12233742016050133').xml";
 
@@ -59,12 +59,13 @@ public class ODataCommunicationClientTest {
         try (InputStream inputStream = Files.newInputStream(Paths.get(ClassLoader.getSystemResource(PATH_TO_BOOKING_METADATA).toURI()))) {
             ResponseEntity<Resource> responseEntity = new ResponseEntity<>(new InputStreamResource(inputStream), HttpStatus.OK);
 
+            when(uriFactoryMock.getBookingMetadataUri()).thenReturn(new URI("some.uri"));
             when(restTemplateMock.exchange(new RequestEntity(HttpMethod.GET, uriFactoryMock.getBookingMetadataUri()), Resource.class))
                     .thenReturn(responseEntity);
-            Edm bookingMetadata = oDataCommunicationClient.getBookingMetadata();
+            Edm bookingMetadata = oDataCommunicationClient.getMetadataByUri(uriFactoryMock.getBookingMetadataUri());
             assertNotNull(bookingMetadata);
             EdmEntityContainer defaultEntityContainer = bookingMetadata.getDefaultEntityContainer();
-            EdmEntitySet booking = defaultEntityContainer.getEntitySet(ODataCommunicationClient.BOOKING_ENTITY_NAME);
+            EdmEntitySet booking = defaultEntityContainer.getEntitySet("BOOKING");
             assertNotNull(booking);
             verify(restTemplateMock, times(1)).exchange(anyObject(), (Class<Object>) anyObject());
         }

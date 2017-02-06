@@ -43,6 +43,9 @@ public class ProcessingService {
     SapBwBookingInfoService bookingInfoService;
 
     @Autowired
+    SapBwCustomerInfoService customerInfoService;
+
+    @Autowired
     EnrichmentService enrichmentService;
 
     @PostConstruct
@@ -81,6 +84,8 @@ public class ProcessingService {
                             LOG.debug("Message: {}", request);
 
                             Map bookingInfo = bookingInfoService.getBookingByKey(bookingNumber, bookingDate, sourceSystemCode.get());
+
+//                            Map<String, Object> customerByKey = customerInfoService.getCustomerByKey("070184007", "0"); //todo - delete while sapbw customer happy flow implemented
                             JsonNode payload = objectMapper.createObjectNode().set("booking", enrichmentService.enrichBooking(booking, bookingInfo));
 
                             msbContext.getObjectFactory()

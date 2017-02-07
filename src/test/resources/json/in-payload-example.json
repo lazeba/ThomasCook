@@ -16,16 +16,7 @@
       "toCode": "34",
       "brand": "BUC",
       "brochureCode": "BUC",
-      "isLateBooking": "N",
-      "hasComplaint": false,
-      "travelAmount": 1,
-      "numberOfParticipants": 2,
-      "numberOfAdults": 2,
-      "numberOfChildren": 3,
-      "numberOfInfants": 1,
-      "currency": "EUR",
-      "duration": 9,
-      "customerId": "115005070"
+      "isLateBooking": "N"
     },
     "travelParticipant": [
       {
@@ -182,18 +173,6 @@
           ]
         }
       ]
-    },
-    "sourceSystem": "34",
-    "bookingNumber": "1223374",
-    "businessArea": "<NO TEXT>",
-    "agent": {
-      "shopCode": "Tour Vital Touristik GmbH"
-    },
-    "booker": {
-      "mobile": "+4412345678",
-      "bookerEmail": "customer@thomascookonline.com",
-      "phone": "+440000000",
-      "emergencyNumber": "12345678"
     }
   }
 }

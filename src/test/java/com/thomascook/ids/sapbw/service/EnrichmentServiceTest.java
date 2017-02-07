@@ -41,11 +41,7 @@ public class EnrichmentServiceTest {
         Map bookingInfo = Utils.convert(readJsonNode(PATH_TO_BOOKING_RESPONSE), Map.class, objectMapper);
         ObjectNode enrichedPayload = enrichmentService.enrichBooking(requestPayload.path("booking"), bookingInfo);
 
-        assertEquals("34", enrichedPayload.path("sourceSystem").asText());
-        assertEquals("1223374", enrichedPayload.path("bookingNumber").asText());
-        assertEquals("<NO TEXT>", enrichedPayload.path("businessArea").asText());
         assertEquals("Tour Vital Touristik GmbH", enrichedPayload.path("agent").path("shopCode").asText());
-
         assertFalse(enrichedPayload.path("general").path("hasComplaint").asBoolean());
         assertEquals(1, enrichedPayload.path("general").path("travelAmount").asInt());
         assertEquals(2, enrichedPayload.path("general").path("numberOfParticipants").asInt());

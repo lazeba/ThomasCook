@@ -16,6 +16,7 @@ public class SapBwApplication {
             new SpringApplicationBuilder()
                     .bannerMode(Banner.Mode.OFF)
                     .sources(SapBwApplication.class)
+                    .web(false)
                     .build();
 
     public static void main(String[] args) {

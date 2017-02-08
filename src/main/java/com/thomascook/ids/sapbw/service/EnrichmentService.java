@@ -25,19 +25,6 @@ public class EnrichmentService {
         this.objectMapper = objectMapper;
     }
 
-    public String getKey(JsonNode bookingNode) {
-        JsonNode booking = bookingNode.path("booking");
-        String bookingNumber = booking.path("identifier").path("bookingNumber").asText();
-        String bookingDate = booking.path("general").path("bookingDate").asText();
-        String sourceSystemCode = booking.path("general").path("toCode").asText();
-
-        return bookingNumber + bookingDate + normalizeSourceSystemCode(sourceSystemCode);
-    }
-
-    private String normalizeSourceSystemCode(String sourceSystemCode) {
-        return sourceSystemCode.startsWith("0") ? sourceSystemCode.substring(1) : sourceSystemCode;
-    }
-
     public ObjectNode enrichBooking(JsonNode booking, Map bookingInfo) {
         ObjectNode node = booking.deepCopy();
         mapBookingInfo(node, Utils.convert(bookingInfo, ObjectNode.class, objectMapper));
@@ -47,14 +34,8 @@ public class EnrichmentService {
     private void mapBookingInfo(ObjectNode bookingNode, ObjectNode bookingInfo) {
         ObjectNode generalNode = (ObjectNode)bookingNode.path("general");
 
-        // map from Key node
-        JsonNode keyNode = bookingInfo.path("Key");
-        bookingNode.set("sourceSystem", keyNode.path("SourcesystemTxt"));
-        bookingNode.set("bookingNumber", keyNode.path("Bookingno"));
-
         // map from SalesBk node
         JsonNode salesBkNode = bookingInfo.path("SalesBk");
-        bookingNode.set("businessArea", salesBkNode.path("BusinessareaTxt"));
         bookingNode.set("agent", objectMapper.createObjectNode().set("shopCode", salesBkNode.path("AgencyTxt")));
         generalNode.set("hasComplaint", complaintExists(salesBkNode.path("Complaintexists")));
 

@@ -73,9 +73,9 @@ public class EnrichmentService {
         customer.set("identity", identity(customerInfo));
         customer.set("company", company(customerInfo));
         customer.set("addresses", addresses(customerInfo));
-        customer.set("address", customerInfo.path("CU_COMMUNICATION").path("VALUE"));
-        customer.set("number", customerInfo.path("CU_COMMUNICATION").path("VALUE"));
-        customer.set("type", customerInfo.path("CU_COMMUNICATION").path("VALUE"));
+//        customer.set("address", customerInfo.path("CU_COMMUNICATION").path("VALUE")); //todo clarify - not yet ready
+//        customer.set("number", customerInfo.path("CU_COMMUNICATION").path("VALUE"));
+//        customer.set("type", customerInfo.path("CU_COMMUNICATION").path("VALUE"));
 
         bookingNode.set("customer", customer);
     }

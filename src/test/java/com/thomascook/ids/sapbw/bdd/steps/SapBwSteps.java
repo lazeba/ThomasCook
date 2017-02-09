@@ -82,7 +82,7 @@ public class SapBwSteps {
         routingKey = config.getString("namespace.routingKey");
         fromNamespace = config.getString("namespace.from");
         toNamespace = config.getString("namespace.to");
-        url = new URI(config.getString("sap-bw-de.url"));
+        url = new URI(config.getString("sap-bw-de.booking-url"));
 
         server = startClientAndServer(url.getPort());
 
@@ -125,6 +125,19 @@ public class SapBwSteps {
         String responseBody = overrideSapBwResponse(responseFile, valuesTable.asMap(String.class, String.class));
         mockSapBwResponse(statusCode, uriFactory.getBookingUri(bookingKey), responseBody);
     }
+
+    @Given("^SapBw mock responds with status (\\d+) and body (\\S+) for customer metadata$")
+    public void mockResponseForCustomerMetaData(int statusCode, String responseFile) throws Exception  {
+        String responseBody = IOUtils.toString(getClass().getResourceAsStream(responseFile));
+        mockSapBwResponse(statusCode, uriFactory.getCustomerMetadataUri(), responseBody);
+    }
+
+    @Given("^SapBw mock responds with status (\\d+) and body (\\S+) for customer key (\\S+) and business area (\\S+) and:$")
+    public void mockResponseForCustomer(int statusCode, String responseFile, String customerNo, String businessArea, DataTable valuesTable) throws Exception  {
+        String responseBody = overrideSapBwResponse(responseFile, valuesTable.asMap(String.class, String.class));
+        mockSapBwResponse(statusCode, uriFactory.getCustomerUri(customerNo, businessArea), responseBody);
+    }
+
 
     @Then("^Enriched message is published with:")
     public void checkOutMessage(DataTable metaDataTable) throws Throwable {

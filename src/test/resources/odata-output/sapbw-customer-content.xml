@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entry xml:base="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/"
+       xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+       xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">
+    <id>
+        http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_MAINDATA(Customerno='070184007',Businessarea='0')
+    </id>
+    <title type="text">CU_MAINDATA(Customerno='070184007',Businessarea='0')</title>
+    <updated>2017-02-03T11:12:21Z</updated>
+    <category term="ZCUSTOMER_SRV.CU_MAINDATA" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')" rel="self" title="CU_MAINDATA"/>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_PROFILE"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_PROFILE"
+          type="application/atom+xml;type=feed" title="CU_PROFILE">
+        <m:inline>
+            <feed xml:base="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/">
+                <id>
+                    http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_PROFILE
+                </id>
+                <title type="text">CU_PROFILE</title>
+                <updated>2017-02-03T11:12:21Z</updated>
+                <author>
+                    <name/>
+                </author>
+                <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_PROFILE" rel="self"
+                      title="CU_PROFILE"/>
+            </feed>
+        </m:inline>
+    </link>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_PERMISSION"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_PERMISSION"
+          type="application/atom+xml;type=feed" title="CU_PERMISSION">
+        <m:inline>
+            <feed xml:base="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/">
+                <id>
+                    http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_PERMISSION
+                </id>
+                <title type="text">CU_PERMISSIONS</title>
+                <updated>2017-02-03T11:12:21Z</updated>
+                <author>
+                    <name/>
+                </author>
+                <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_PERMISSION" rel="self"
+                      title="CU_PERMISSIONS"/>
+                <entry>
+                    <id>
+                        http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_PERMISSIONS(Customerno='70184007',Businessarea='0')
+                    </id>
+                    <title type="text">CU_PERMISSIONS(Customerno='70184007',Businessarea='0')</title>
+                    <updated>2017-02-03T11:12:21Z</updated>
+                    <category term="ZCUSTOMER_SRV.CU_PERMISSION"
+                              scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+                    <link href="CU_PERMISSIONS(Customerno='70184007',Businessarea='0')" rel="self"
+                          title="CU_PERMISSION"/>
+                    <link href="CU_PERMISSIONS(Customerno='70184007',Businessarea='0')/CU_MAINDATA"
+                          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_MAINDATA"
+                          type="application/atom+xml;type=entry" title="CU_MAINDATA"/>
+                    <content type="application/xml">
+                        <m:properties>
+                            <d:Msgid/>
+                            <d:Customerno>70184007</d:Customerno>
+                            <d:Businessarea>0</d:Businessarea>
+                            <d:Itemtype>CU</d:Itemtype>
+                            <d:Contactdata>J.BLUMENAUER1978@GOOGLEMAIL.COM</d:Contactdata>
+                            <d:Channel>EMAIL</d:Channel>
+                            <d:Usecase>MKT</d:Usecase>
+                            <d:UsecaseTxt/>
+                            <d:Entity>NEC</d:Entity>
+                            <d:Status>02</d:Status>
+                            <d:StatusTxt/>
+                            <d:OriginIn>TOU</d:OriginIn>
+                            <d:OriginInTxt/>
+                            <d:OriginOut>TOU</d:OriginOut>
+                            <d:OriginOutTxt/>
+                            <d:PermissionInDate m:null="true"/>
+                            <d:PermissionInTime>00:00</d:PermissionInTime>
+                            <d:PermissionOutDate>2016-03-25T00:00:00</d:PermissionOutDate>
+                            <d:PermissionOutTime>00:00</d:PermissionOutTime>
+                            <d:ChangeDate>2016-03-25T00:00:00</d:ChangeDate>
+                            <d:ChangeTime/>
+                            <d:IpIn/>
+                            <d:IpOut/>
+                        </m:properties>
+                    </content>
+                </entry>
+                <entry>
+                    <id>
+                        http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_PERMISSIONS(Customerno='70184007',Businessarea='0')
+                    </id>
+                    <title type="text">CU_PERMISSIONS(Customerno='70184007',Businessarea='0')</title>
+                    <updated>2017-02-03T11:12:21Z</updated>
+                    <category term="ZCUSTOMER_SRV.CU_PERMISSION"
+                              scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+                    <link href="CU_PERMISSIONS(Customerno='70184007',Businessarea='0')" rel="self"
+                          title="CU_PERMISSION"/>
+                    <link href="CU_PERMISSIONS(Customerno='70184007',Businessarea='0')/CU_MAINDATA"
+                          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_MAINDATA"
+                          type="application/atom+xml;type=entry" title="CU_MAINDATA"/>
+                    <content type="application/xml">
+                        <m:properties>
+                            <d:Msgid/>
+                            <d:Customerno>70184007</d:Customerno>
+                            <d:Businessarea>0</d:Businessarea>
+                            <d:Itemtype>CU</d:Itemtype>
+                            <d:Contactdata>J.BLUMENAUER1978@GOOGLEMAIL.COM</d:Contactdata>
+                            <d:Channel>EMAIL</d:Channel>
+                            <d:Usecase>MKT</d:Usecase>
+                            <d:UsecaseTxt/>
+                            <d:Entity>TOC</d:Entity>
+                            <d:Status>02</d:Status>
+                            <d:StatusTxt/>
+                            <d:OriginIn>TOU</d:OriginIn>
+                            <d:OriginInTxt/>
+                            <d:OriginOut>TOU</d:OriginOut>
+                            <d:OriginOutTxt/>
+                            <d:PermissionInDate m:null="true"/>
+                            <d:PermissionInTime>00:00</d:PermissionInTime>
+                            <d:PermissionOutDate>2016-03-25T00:00:00</d:PermissionOutDate>
+                            <d:PermissionOutTime>00:00</d:PermissionOutTime>
+                            <d:ChangeDate>2016-03-25T00:00:00</d:ChangeDate>
+                            <d:ChangeTime/>
+                            <d:IpIn/>
+                            <d:IpOut/>
+                        </m:properties>
+                    </content>
+                </entry>
+            </feed>
+        </m:inline>
+    </link>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_MARKETINGACTION"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_MARKETINGACTION"
+          type="application/atom+xml;type=feed" title="CU_MARKETINGACTION">
+        <m:inline>
+            <feed xml:base="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/">
+                <id>
+                    http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_MARKETINGACTION
+                </id>
+                <title type="text">CU_MARKETINGACTION</title>
+                <updated>2017-02-03T11:12:21Z</updated>
+                <author>
+                    <name/>
+                </author>
+                <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_MARKETINGACTION" rel="self"
+                      title="CU_MARKETINGACTION"/>
+            </feed>
+        </m:inline>
+    </link>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_CUSTOMERKPI"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_CUSTOMERKPI"
+          type="application/atom+xml;type=feed" title="CU_CUSTOMERKPI">
+        <m:inline>
+            <feed xml:base="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/">
+                <id>
+                    http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_CUSTOMERKPI
+                </id>
+                <title type="text">CU_CUSTOMERKPI</title>
+                <updated>2017-02-03T11:12:21Z</updated>
+                <author>
+                    <name/>
+                </author>
+                <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_CUSTOMERKPI" rel="self"
+                      title="CU_CUSTOMERKPI"/>
+                <entry>
+                    <id>
+                        http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')
+                    </id>
+                    <title type="text">CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')</title>
+                    <updated>2017-02-03T11:12:21Z</updated>
+                    <category term="ZCUSTOMER_SRV.CU_CUSTOMERKPI"
+                              scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+                    <link href="CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')" rel="self"
+                          title="CU_CUSTOMERKPI"/>
+                    <link href="CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')/CU_MAINDATA"
+                          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_MAINDATA"
+                          type="application/atom+xml;type=entry" title="CU_MAINDATA"/>
+                    <content type="application/xml">
+                        <m:properties>
+                            <d:Msgid/>
+                            <d:Customerno>70184007</d:Customerno>
+                            <d:Businessarea>0</d:Businessarea>
+                            <d:Type>KPI_005</d:Type>
+                            <d:Typetxt/>
+                            <d:Value/>
+                            <d:Valuetype/>
+                            <d:Calculationdate>2016-12-17T00:00:00</d:Calculationdate>
+                            <d:Expiringdate m:null="true"/>
+                            <d:Currency/>
+                        </m:properties>
+                    </content>
+                </entry>
+                <entry>
+                    <id>
+                        http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')
+                    </id>
+                    <title type="text">CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')</title>
+                    <updated>2017-02-03T11:12:21Z</updated>
+                    <category term="ZCUSTOMER_SRV.CU_CUSTOMERKPI"
+                              scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+                    <link href="CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')" rel="self"
+                          title="CU_CUSTOMERKPI"/>
+                    <link href="CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')/CU_MAINDATA"
+                          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_MAINDATA"
+                          type="application/atom+xml;type=entry" title="CU_MAINDATA"/>
+                    <content type="application/xml">
+                        <m:properties>
+                            <d:Msgid/>
+                            <d:Customerno>70184007</d:Customerno>
+                            <d:Businessarea>0</d:Businessarea>
+                            <d:Type>KPI_025</d:Type>
+                            <d:Typetxt/>
+                            <d:Value/>
+                            <d:Valuetype/>
+                            <d:Calculationdate>2016-12-17T00:00:00</d:Calculationdate>
+                            <d:Expiringdate m:null="true"/>
+                            <d:Currency/>
+                        </m:properties>
+                    </content>
+                </entry>
+                <entry>
+                    <id>
+                        http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')
+                    </id>
+                    <title type="text">CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')</title>
+                    <updated>2017-02-03T11:12:21Z</updated>
+                    <category term="ZCUSTOMER_SRV.CU_CUSTOMERKPI"
+                              scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+                    <link href="CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')" rel="self"
+                          title="CU_CUSTOMERKPI"/>
+                    <link href="CU_CUSTOMERKPI(Customerno='70184007',Businessarea='0')/CU_MAINDATA"
+                          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_MAINDATA"
+                          type="application/atom+xml;type=entry" title="CU_MAINDATA"/>
+                    <content type="application/xml">
+                        <m:properties>
+                            <d:Msgid/>
+                            <d:Customerno>70184007</d:Customerno>
+                            <d:Businessarea>0</d:Businessarea>
+                            <d:Type>KPI_010</d:Type>
+                            <d:Typetxt/>
+                            <d:Value/>
+                            <d:Valuetype/>
+                            <d:Calculationdate>2016-12-17T00:00:00</d:Calculationdate>
+                            <d:Expiringdate m:null="true"/>
+                            <d:Currency/>
+                        </m:properties>
+                    </content>
+                </entry>
+            </feed>
+        </m:inline>
+    </link>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_COMMUNICATION"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_COMMUNICATION"
+          type="application/atom+xml;type=feed" title="CU_COMMUNICATION">
+        <m:inline>
+            <feed xml:base="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/">
+                <id>
+                    http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_COMMUNICATION
+                </id>
+                <title type="text">CU_COMMUNICATION</title>
+                <updated>2017-02-03T11:12:21Z</updated>
+                <author>
+                    <name/>
+                </author>
+                <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_COMMUNICATION" rel="self"
+                      title="CU_COMMUNICATION"/>
+                <entry>
+                    <id>
+                        http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_COMMUNICATION(Customerno='70184007',Businessarea='0')
+                    </id>
+                    <title type="text">CU_COMMUNICATION(Customerno='70184007',Businessarea='0')</title>
+                    <updated>2017-02-03T11:12:21Z</updated>
+                    <category term="ZCUSTOMER_SRV.CU_COMMUNICATION"
+                              scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+                    <link href="CU_COMMUNICATION(Customerno='70184007',Businessarea='0')" rel="self"
+                          title="CU_COMMUNICATION"/>
+                    <link href="CU_COMMUNICATION(Customerno='70184007',Businessarea='0')/CU_MAINDATA"
+                          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_MAINDATA"
+                          type="application/atom+xml;type=entry" title="CU_MAINDATA"/>
+                    <content type="application/xml">
+                        <m:properties>
+                            <d:Msgid/>
+                            <d:Customerno>70184007</d:Customerno>
+                            <d:Businessarea>0</d:Businessarea>
+                            <d:Type>EMAIL</d:Type>
+                            <d:TypeTxt/>
+                            <d:Value>J.BLUMENAUER1978@GOOGLEMAIL.COM</d:Value>
+                            <d:Valueori/>
+                            <d:Usage/>
+                            <d:Changedate>2016-07-01T00:00:00</d:Changedate>
+                            <d:Changesource>TOU</d:Changesource>
+                            <d:ChangesourceTxt/>
+                        </m:properties>
+                    </content>
+                </entry>
+            </feed>
+        </m:inline>
+    </link>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_EXTERNALID"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_EXTERNALID"
+          type="application/atom+xml;type=feed" title="CU_EXTERNALID">
+        <m:inline>
+            <feed xml:base="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/">
+                <id>
+                    http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_EXTERNALID
+                </id>
+                <title type="text">CU_EXTERNALID</title>
+                <updated>2017-02-03T11:12:21Z</updated>
+                <author>
+                    <name/>
+                </author>
+                <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_EXTERNALID" rel="self"
+                      title="CU_EXTERNALID"/>
+                <entry>
+                    <id>
+                        http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/CU_EXTERNALID(Customerno='70184007',Businessarea='0')
+                    </id>
+                    <title type="text">CU_EXTERNALID(Customerno='70184007',Businessarea='0')</title>
+                    <updated>2017-02-03T11:12:21Z</updated>
+                    <category term="ZCUSTOMER_SRV.CU_EXTERNALID"
+                              scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+                    <link href="CU_EXTERNALID(Customerno='70184007',Businessarea='0')" rel="self"
+                          title="CU_EXTERNALID"/>
+                    <link href="CU_EXTERNALID(Customerno='70184007',Businessarea='0')/CU_MAINDATA"
+                          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_MAINDATA"
+                          type="application/atom+xml;type=entry" title="CU_MAINDATA"/>
+                    <content type="application/xml">
+                        <m:properties>
+                            <d:Msgid/>
+                            <d:Customerno>70184007</d:Customerno>
+                            <d:Businessarea>0</d:Businessarea>
+                            <d:Type>TOU</d:Type>
+                            <d:Typetxt/>
+                            <d:Extid>56F</d:Extid>
+                            <d:Dataorigin>TOU</d:Dataorigin>
+                            <d:Dataorigintxt/>
+                        </m:properties>
+                    </content>
+                </entry>
+            </feed>
+        </m:inline>
+    </link>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_STATUS"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_STATUS"
+          type="application/atom+xml;type=entry" title="CU_STATUS"/>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/CU_DUPLICATEINFO"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CU_DUPLICATEINFO"
+          type="application/atom+xml;type=entry" title="CU_DUPLICATEINFO"/>
+    <link href="CU_MAINDATA(Customerno='070184007',Businessarea='0')/MSG_HEADER"
+          rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/MSG_HEADER"
+          type="application/atom+xml;type=entry" title="MSG_HEADER"/>
+    <content type="application/xml">
+        <m:properties>
+            <d:Busareadata m:type="ZCUSTOMER_SRV.Busareadata">
+                <d:Birthdate m:null="true"/>
+                <d:Calculatedbirthdate m:null="true"/>
+                <d:Role/>
+                <d:Roletxt/>
+            </d:Busareadata>
+            <d:Address m:type="ZCUSTOMER_SRV.Address">
+                <d:Addresssupplement/>
+                <d:Street>Steinstr.</d:Street>
+                <d:Streetsupplement/>
+                <d:Houseno>22</d:Houseno>
+                <d:Housenosupplement/>
+                <d:Zipcode>66557</d:Zipcode>
+                <d:City>Illingen</d:City>
+                <d:Region/>
+                <d:Regiontxt/>
+                <d:Country>DE</d:Country>
+                <d:Addressban/>
+                <d:Addressbantxt/>
+                <d:Validationstatus>02</d:Validationstatus>
+                <d:Validationstatustxt/>
+            </d:Address>
+            <d:Company m:type="ZCUSTOMER_SRV.Company">
+                <d:Compname/>
+            </d:Company>
+            <d:Person m:type="ZCUSTOMER_SRV.Person">
+                <d:Title>01</d:Title>
+                <d:Titletxt/>
+                <d:Acadtitle/>
+                <d:Firstname>Joerg</d:Firstname>
+                <d:Lastname>Blumenauer</d:Lastname>
+                <d:Middlename/>
+                <d:Gender>M</d:Gender>
+                <d:Gendertxt/>
+                <d:Nationality/>
+            </d:Person>
+            <d:Generaldata m:type="ZCUSTOMER_SRV.Generaldata">
+                <d:Custtype>01</d:Custtype>
+                <d:Custtypetxt/>
+                <d:Changedate>2016-07-01T00:00:00</d:Changedate>
+                <d:Language/>
+                <d:Customerban/>
+                <d:Customerbantxt/>
+            </d:Generaldata>
+            <d:Msgid/>
+            <d:Customerno>070184007</d:Customerno>
+            <d:Businessarea>0</d:Businessarea>
+            <d:Businessareatxt/>
+        </m:properties>
+    </content>
+</entry>

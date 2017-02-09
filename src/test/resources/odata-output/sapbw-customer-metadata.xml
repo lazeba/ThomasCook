@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+           xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZCUSTOMER_SRV" xml:lang="en" sap:schema-version="1"
+                xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="CU_MAINDATA" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Busareadata" Type="ZCUSTOMER_SRV.Busareadata" Nullable="false"/>
+                <Property Name="Address" Type="ZCUSTOMER_SRV.Address" Nullable="false"/>
+                <Property Name="Company" Type="ZCUSTOMER_SRV.Company" Nullable="false"/>
+                <Property Name="Person" Type="ZCUSTOMER_SRV.Person" Nullable="false"/>
+                <Property Name="Generaldata" Type="ZCUSTOMER_SRV.Generaldata" Nullable="false"/>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessareatxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="CU_PROFILE" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_PROFIL"
+                                    FromRole="FromRole_MAINDATA_TO_PROFIL" ToRole="ToRole_MAINDATA_TO_PROFIL"/>
+                <NavigationProperty Name="CU_PERMISSION" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_PERMISSION"
+                                    FromRole="FromRole_MAINDATA_TO_PERMISSION" ToRole="ToRole_MAINDATA_TO_PERMISSION"/>
+                <NavigationProperty Name="CU_MARKETINGACTION" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_MARKETINGACTION"
+                                    FromRole="FromRole_MAINDATA_TO_MARKETINGACTION"
+                                    ToRole="ToRole_MAINDATA_TO_MARKETINGACTION"/>
+                <NavigationProperty Name="CU_CUSTOMERKPI" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_CUSTOMERKPI"
+                                    FromRole="FromRole_MAINDATA_TO_CUSTOMERKPI"
+                                    ToRole="ToRole_MAINDATA_TO_CUSTOMERKPI"/>
+                <NavigationProperty Name="CU_COMMUNICATION" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_COMMUNICATION"
+                                    FromRole="FromRole_MAINDATA_TO_COMMUNICATION"
+                                    ToRole="ToRole_MAINDATA_TO_COMMUNICATION"/>
+                <NavigationProperty Name="CU_EXTERNALID" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_EXTERNALID"
+                                    FromRole="FromRole_MAINDATA_TO_EXTERNALID" ToRole="ToRole_MAINDATA_TO_EXTERNALID"/>
+                <NavigationProperty Name="CU_STATUS" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_CU_STATUS"
+                                    FromRole="FromRole_MAINDATA_TO_CU_STATUS" ToRole="ToRole_MAINDATA_TO_CU_STATUS"/>
+                <NavigationProperty Name="CU_DUPLICATEINFO" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_DUPLICATEINFO"
+                                    FromRole="FromRole_MAINDATA_TO_DUPLICATEINFO"
+                                    ToRole="ToRole_MAINDATA_TO_DUPLICATEINFO"/>
+                <NavigationProperty Name="MSG_HEADER" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_MAINDATA"
+                                    FromRole="ToRole_MSG_HEADER_TO_MAINDATA" ToRole="FromRole_MSG_HEADER_TO_MAINDATA"/>
+            </EntityType>
+            <EntityType Name="CU_DUPLICATEINFO" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Leadingcustomerno" Type="Edm.String" Nullable="false" MaxLength="9"
+                          sap:label="Customer ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="3"
+                          sap:label="Dubl: Prozess-Status" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Statustxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_DUPLICATEINFO"
+                                    FromRole="ToRole_MAINDATA_TO_DUPLICATEINFO"
+                                    ToRole="FromRole_MAINDATA_TO_DUPLICATEINFO"/>
+            </EntityType>
+            <EntityType Name="CU_STATUS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_CU_STATUS"
+                                    FromRole="ToRole_MAINDATA_TO_CU_STATUS" ToRole="FromRole_MAINDATA_TO_CU_STATUS"/>
+            </EntityType>
+            <EntityType Name="MSG_HEADER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Msgid"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Requester" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Source"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txtflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="CU_DUPLICATEINFO" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_DUPLICATEINFO"
+                                    FromRole="FromRole_MSG_HEADER_TO_DUPLICATEINFO"
+                                    ToRole="ToRole_MSG_HEADER_TO_DUPLICATEINFO"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_MAINDATA"
+                                    FromRole="FromRole_MSG_HEADER_TO_MAINDATA" ToRole="ToRole_MSG_HEADER_TO_MAINDATA"/>
+                <NavigationProperty Name="CU_PROFILE" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_PROFILE"
+                                    FromRole="FromRole_MSG_HEADER_TO_PROFILE" ToRole="ToRole_MSG_HEADER_TO_PROFILE"/>
+                <NavigationProperty Name="CU_PERMISSION" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_PERMISSION"
+                                    FromRole="FromRole_MSG_HEADER_TO_PERMISSION"
+                                    ToRole="ToRole_MSG_HEADER_TO_PERMISSION"/>
+                <NavigationProperty Name="CU_MESSAGES" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_MESSAGES"
+                                    FromRole="FromRole_MSG_HEADER_TO_MESSAGES" ToRole="ToRole_MSG_HEADER_TO_MESSAGES"/>
+                <NavigationProperty Name="CU_MARKETINGACTION" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_MARKETINGACTION"
+                                    FromRole="FromRole_MSG_HEADER_TO_MARKETINGACTION"
+                                    ToRole="ToRole_MSG_HEADER_TO_MARKETINGACTION"/>
+                <NavigationProperty Name="CU_EXTERNALID" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_EXTERNALID"
+                                    FromRole="FromRole_MSG_HEADER_TO_EXTERNALID"
+                                    ToRole="ToRole_MSG_HEADER_TO_EXTERNALID"/>
+                <NavigationProperty Name="CU_CUSTOMERKPI" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_CUSTOMERKPI"
+                                    FromRole="FromRole_MSG_HEADER_TO_CUSTOMERKPI"
+                                    ToRole="ToRole_MSG_HEADER_TO_CUSTOMERKPI"/>
+                <NavigationProperty Name="CU_COMMUNICATION" Relationship="ZCUSTOMER_SRV.MSG_HEADER_TO_COMMUNICATION"
+                                    FromRole="FromRole_MSG_HEADER_TO_COMMUNICATION"
+                                    ToRole="ToRole_MSG_HEADER_TO_COMMUNICATION"/>
+            </EntityType>
+            <EntityType Name="CU_COMMUNICATION" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TypeTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="120" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Valueori" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Char20"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usage" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedate" Type="Edm.DateTime" Precision="7" sap:label="Date" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changesource" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangesourceTxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_COMMUNICATION"
+                                    FromRole="ToRole_MAINDATA_TO_COMMUNICATION"
+                                    ToRole="FromRole_MAINDATA_TO_COMMUNICATION"/>
+            </EntityType>
+            <EntityType Name="CU_PROFILE" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Profil-Typ"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Typetxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Wert"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dataorigin" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Profil Quelle"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dataorigintxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Profil Status"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Statustxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Profilegroup" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Profil-Gruppe"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Profilegrouptxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Changedate" Type="Edm.DateTime" Precision="7" sap:label="And. Datum Kunde"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_PROFIL"
+                                    FromRole="ToRole_MAINDATA_TO_PROFIL" ToRole="FromRole_MAINDATA_TO_PROFIL"/>
+            </EntityType>
+            <EntityType Name="CU_PERMISSION" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemtype" Type="Edm.String" Nullable="false" MaxLength="5" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Contactdata" Type="Edm.String" Nullable="false" MaxLength="250" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Channel" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usecase" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UsecaseTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Entity" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="OriginIn" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OriginInTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="OriginOut" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OriginOutTxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="PermissionInDate" Type="Edm.DateTime" Precision="7" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PermissionInTime" Type="Edm.String" Nullable="false" MaxLength="5" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PermissionOutDate" Type="Edm.DateTime" Precision="7" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PermissionOutTime" Type="Edm.String" Nullable="false" MaxLength="5"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangeDate" Type="Edm.DateTime" Precision="7" sap:label="Change Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangeTime" Type="Edm.String" Nullable="false" MaxLength="5" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IpIn" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IpOut" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_PERMISSION"
+                                    FromRole="ToRole_MAINDATA_TO_PERMISSION" ToRole="FromRole_MAINDATA_TO_PERMISSION"/>
+            </EntityType>
+            <EntityType Name="CU_MARKETINGACTION" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Actionid" Type="Edm.String" Nullable="false" MaxLength="24"
+                          sap:label="CRM Marketing Elem." sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Actionidtxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Executiondate" Type="Edm.DateTime" Precision="7" sap:label="Datum Mkt.-Aktion"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Creationdate" Type="Edm.DateTime" Precision="7" sap:label="Date" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Communicationdate" Type="Edm.DateTime" Precision="7" sap:label="PAL"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Communicationmedia" Type="Edm.String" Nullable="false" MaxLength="4"
+                          sap:label="Communication Medium" sap:creatable="false" sap:updatable="false"
+                          sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Communicationmediatxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Brand"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brandtxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dataorigin" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Source"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dataorigintxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="250" sap:label="E-Mail Adress"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_MARKETINGACTION"
+                                    FromRole="ToRole_MAINDATA_TO_MARKETINGACTION"
+                                    ToRole="FromRole_MAINDATA_TO_MARKETINGACTION"/>
+            </EntityType>
+            <EntityType Name="CU_EXTERNALID" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="32" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Typetxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Extid" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dataorigin" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Source"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dataorigintxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="Long description" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_EXTERNALID"
+                                    FromRole="ToRole_MAINDATA_TO_EXTERNALID" ToRole="FromRole_MAINDATA_TO_EXTERNALID"/>
+            </EntityType>
+            <EntityType Name="CU_CUSTOMERKPI" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customerno"/>
+                    <PropertyRef Name="Businessarea"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerno" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Customer ID"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Businessarea" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Business Area"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BA data type"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Typetxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Long description"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Char20"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Valuetype" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Calculationdate" Type="Edm.DateTime" Precision="7" sap:label="Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Expiringdate" Type="Edm.DateTime" Precision="7" sap:label="Expiry date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"
+                          sap:semantics="currency-code"/>
+                <NavigationProperty Name="CU_MAINDATA" Relationship="ZCUSTOMER_SRV.MAINDATA_TO_CUSTOMERKPI"
+                                    FromRole="ToRole_MAINDATA_TO_CUSTOMERKPI"
+                                    ToRole="FromRole_MAINDATA_TO_CUSTOMERKPI"/>
+            </EntityType>
+            <EntityType Name="CU_MESSAGES" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Msgid"/>
+                </Key>
+                <Property Name="Msgid" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="GUID for Projects"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Message type"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Message Class"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Message number"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:label="Message text"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LogNo" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Log number"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LogMsgNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Message no."
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MessageV1" Type="Edm.String" Nullable="false" MaxLength="50"
+                          sap:label="Message Variable" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="MessageV2" Type="Edm.String" Nullable="false" MaxLength="50"
+                          sap:label="Message Variable" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="MessageV3" Type="Edm.String" Nullable="false" MaxLength="50"
+                          sap:label="Message Variable" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="MessageV4" Type="Edm.String" Nullable="false" MaxLength="50"
+                          sap:label="Message Variable" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+                <Property Name="Parameter" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="Parameter Name"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Row" Type="Edm.Int32" Nullable="false" sap:label="Parameter line" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Field" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Field name"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="System" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Logical system"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <ComplexType Name="Address">
+                <Property Name="Addresssupplement" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Streetsupplement" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Houseno" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Housenosupplement" Type="Edm.String" Nullable="false" MaxLength="10"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zipcode" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Regiontxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Addressban" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Addressbantxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Validationstatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Validationstatustxt" Type="Edm.String" Nullable="false" MaxLength="60"
+                          sap:label="CHAR60" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                          sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Busareadata">
+                <Property Name="Birthdate" Type="Edm.DateTime" Precision="7" sap:label="Date" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Calculatedbirthdate" Type="Edm.DateTime" Precision="7" sap:label="Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Role" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Reserve"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Roletxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Company">
+                <Property Name="Compname" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Char80"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Generaldata">
+                <Property Name="Custtype" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Custtypetxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Date"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerban" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customerbantxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="Person">
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Titletxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Acadtitle" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Firstname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lastname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Middlename" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gender" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gendertxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="CHAR60"
+                          sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nationality" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false"
+                          sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <Association Name="MAINDATA_TO_DUPLICATEINFO" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="1" Role="FromRole_MAINDATA_TO_DUPLICATEINFO"/>
+                <End Type="ZCUSTOMER_SRV.CU_DUPLICATEINFO" Multiplicity="0..1" Role="ToRole_MAINDATA_TO_DUPLICATEINFO"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MAINDATA_TO_DUPLICATEINFO">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MAINDATA_TO_DUPLICATEINFO">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MAINDATA_TO_CU_STATUS" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="1" Role="FromRole_MAINDATA_TO_CU_STATUS"/>
+                <End Type="ZCUSTOMER_SRV.CU_STATUS" Multiplicity="1" Role="ToRole_MAINDATA_TO_CU_STATUS"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MAINDATA_TO_CU_STATUS">
+                        <PropertyRef Name="Businessarea"/>
+                        <PropertyRef Name="Customerno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MAINDATA_TO_CU_STATUS">
+                        <PropertyRef Name="Businessarea"/>
+                        <PropertyRef Name="Customerno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MAINDATA_TO_EXTERNALID" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="1" Role="FromRole_MAINDATA_TO_EXTERNALID"/>
+                <End Type="ZCUSTOMER_SRV.CU_EXTERNALID" Multiplicity="*" Role="ToRole_MAINDATA_TO_EXTERNALID"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MAINDATA_TO_EXTERNALID">
+                        <PropertyRef Name="Businessarea"/>
+                        <PropertyRef Name="Customerno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MAINDATA_TO_EXTERNALID">
+                        <PropertyRef Name="Businessarea"/>
+                        <PropertyRef Name="Customerno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MAINDATA_TO_COMMUNICATION" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="1" Role="FromRole_MAINDATA_TO_COMMUNICATION"/>
+                <End Type="ZCUSTOMER_SRV.CU_COMMUNICATION" Multiplicity="*" Role="ToRole_MAINDATA_TO_COMMUNICATION"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MAINDATA_TO_COMMUNICATION">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MAINDATA_TO_COMMUNICATION">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MAINDATA_TO_CUSTOMERKPI" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="1" Role="FromRole_MAINDATA_TO_CUSTOMERKPI"/>
+                <End Type="ZCUSTOMER_SRV.CU_CUSTOMERKPI" Multiplicity="*" Role="ToRole_MAINDATA_TO_CUSTOMERKPI"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MAINDATA_TO_CUSTOMERKPI">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MAINDATA_TO_CUSTOMERKPI">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MAINDATA_TO_MARKETINGACTION" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="1" Role="FromRole_MAINDATA_TO_MARKETINGACTION"/>
+                <End Type="ZCUSTOMER_SRV.CU_MARKETINGACTION" Multiplicity="*"
+                     Role="ToRole_MAINDATA_TO_MARKETINGACTION"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MAINDATA_TO_MARKETINGACTION">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MAINDATA_TO_MARKETINGACTION">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MAINDATA_TO_PERMISSION" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="1" Role="FromRole_MAINDATA_TO_PERMISSION"/>
+                <End Type="ZCUSTOMER_SRV.CU_PERMISSION" Multiplicity="*" Role="ToRole_MAINDATA_TO_PERMISSION"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MAINDATA_TO_PERMISSION">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MAINDATA_TO_PERMISSION">
+                        <PropertyRef Name="Customerno"/>
+                        <PropertyRef Name="Businessarea"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MAINDATA_TO_PROFIL" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="1" Role="FromRole_MAINDATA_TO_PROFIL"/>
+                <End Type="ZCUSTOMER_SRV.CU_PROFILE" Multiplicity="*" Role="ToRole_MAINDATA_TO_PROFIL"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MAINDATA_TO_PROFIL">
+                        <PropertyRef Name="Businessarea"/>
+                        <PropertyRef Name="Customerno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MAINDATA_TO_PROFIL">
+                        <PropertyRef Name="Businessarea"/>
+                        <PropertyRef Name="Customerno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_COMMUNICATION" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_COMMUNICATION"/>
+                <End Type="ZCUSTOMER_SRV.CU_COMMUNICATION" Multiplicity="*" Role="ToRole_MSG_HEADER_TO_COMMUNICATION"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_COMMUNICATION">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_COMMUNICATION">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_CUSTOMERKPI" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_CUSTOMERKPI"/>
+                <End Type="ZCUSTOMER_SRV.CU_CUSTOMERKPI" Multiplicity="*" Role="ToRole_MSG_HEADER_TO_CUSTOMERKPI"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_CUSTOMERKPI">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_CUSTOMERKPI">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_EXTERNALID" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_EXTERNALID"/>
+                <End Type="ZCUSTOMER_SRV.CU_EXTERNALID" Multiplicity="*" Role="ToRole_MSG_HEADER_TO_EXTERNALID"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_EXTERNALID">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_EXTERNALID">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_MARKETINGACTION" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_MARKETINGACTION"/>
+                <End Type="ZCUSTOMER_SRV.CU_MARKETINGACTION" Multiplicity="*"
+                     Role="ToRole_MSG_HEADER_TO_MARKETINGACTION"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_MARKETINGACTION">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_MARKETINGACTION">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_MESSAGES" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_MESSAGES"/>
+                <End Type="ZCUSTOMER_SRV.CU_MESSAGES" Multiplicity="*" Role="ToRole_MSG_HEADER_TO_MESSAGES"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_MESSAGES">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_MESSAGES">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_PERMISSION" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_PERMISSION"/>
+                <End Type="ZCUSTOMER_SRV.CU_PERMISSION" Multiplicity="*" Role="ToRole_MSG_HEADER_TO_PERMISSION"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_PERMISSION">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_PERMISSION">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_PROFILE" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_PROFILE"/>
+                <End Type="ZCUSTOMER_SRV.CU_PROFILE" Multiplicity="*" Role="ToRole_MSG_HEADER_TO_PROFILE"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_PROFILE">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_PROFILE">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_MAINDATA" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_MAINDATA"/>
+                <End Type="ZCUSTOMER_SRV.CU_MAINDATA" Multiplicity="*" Role="ToRole_MSG_HEADER_TO_MAINDATA"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_MAINDATA">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_MAINDATA">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MSG_HEADER_TO_DUPLICATEINFO" sap:content-version="1">
+                <End Type="ZCUSTOMER_SRV.MSG_HEADER" Multiplicity="1" Role="FromRole_MSG_HEADER_TO_DUPLICATEINFO"/>
+                <End Type="ZCUSTOMER_SRV.CU_DUPLICATEINFO" Multiplicity="1" Role="ToRole_MSG_HEADER_TO_DUPLICATEINFO"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MSG_HEADER_TO_DUPLICATEINFO">
+                        <PropertyRef Name="Msgid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MSG_HEADER_TO_DUPLICATEINFO">
+                        <PropertyRef Name="Msgid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZCUSTOMER_SRV_Entities" m:IsDefaultEntityContainer="true"
+                             sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CU_MAINDATA" EntityType="ZCUSTOMER_SRV.CU_MAINDATA" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CU_DUPLICATEINFO" EntityType="ZCUSTOMER_SRV.CU_DUPLICATEINFO" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"
+                           sap:content-version="1"/>
+                <EntitySet Name="CU_STATUS" EntityType="ZCUSTOMER_SRV.CU_STATUS" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"
+                           sap:content-version="1"/>
+                <EntitySet Name="MSG_HEADER" EntityType="ZCUSTOMER_SRV.MSG_HEADER" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CU_COMMUNICATION" EntityType="ZCUSTOMER_SRV.CU_COMMUNICATION" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CU_PROFILE" EntityType="ZCUSTOMER_SRV.CU_PROFILE" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CU_PERMISSIONS" EntityType="ZCUSTOMER_SRV.CU_PERMISSION" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CU_MARKETINGACTION" EntityType="ZCUSTOMER_SRV.CU_MARKETINGACTION" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CU_EXTERNALID" EntityType="ZCUSTOMER_SRV.CU_EXTERNALID" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CU_CUSTOMERKPI" EntityType="ZCUSTOMER_SRV.CU_CUSTOMERKPI" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CU_MESSAGES" EntityType="ZCUSTOMER_SRV.CU_MESSAGES" sap:creatable="false"
+                           sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="MAINDATA_TO_PERMISSION" Association="ZCUSTOMER_SRV.MAINDATA_TO_PERMISSION"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="CU_MAINDATA" Role="FromRole_MAINDATA_TO_PERMISSION"/>
+                    <End EntitySet="CU_PERMISSIONS" Role="ToRole_MAINDATA_TO_PERMISSION"/>
+                </AssociationSet>
+                <AssociationSet Name="MAINDATA_TO_PROFILE" Association="ZCUSTOMER_SRV.MAINDATA_TO_PROFIL"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="CU_MAINDATA" Role="FromRole_MAINDATA_TO_PROFIL"/>
+                    <End EntitySet="CU_PROFILE" Role="ToRole_MAINDATA_TO_PROFIL"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_CUSTOMERKPI" Association="ZCUSTOMER_SRV.MSG_HEADER_TO_CUSTOMERKPI"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_CUSTOMERKPI"/>
+                    <End EntitySet="CU_CUSTOMERKPI" Role="ToRole_MSG_HEADER_TO_CUSTOMERKPI"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_PROFILESet" Association="ZCUSTOMER_SRV.MSG_HEADER_TO_PROFILE"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_PROFILE"/>
+                    <End EntitySet="CU_PROFILE" Role="ToRole_MSG_HEADER_TO_PROFILE"/>
+                </AssociationSet>
+                <AssociationSet Name="MAINDATA_TO_EXTERNALID_AssocSet"
+                                Association="ZCUSTOMER_SRV.MAINDATA_TO_EXTERNALID" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CU_MAINDATA" Role="FromRole_MAINDATA_TO_EXTERNALID"/>
+                    <End EntitySet="CU_EXTERNALID" Role="ToRole_MAINDATA_TO_EXTERNALID"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_COMMUNICATION"
+                                Association="ZCUSTOMER_SRV.MSG_HEADER_TO_COMMUNICATION" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_COMMUNICATION"/>
+                    <End EntitySet="CU_COMMUNICATION" Role="ToRole_MSG_HEADER_TO_COMMUNICATION"/>
+                </AssociationSet>
+                <AssociationSet Name="MAINDATA_TO_CU_STATUS" Association="ZCUSTOMER_SRV.MAINDATA_TO_CU_STATUS"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="CU_MAINDATA" Role="FromRole_MAINDATA_TO_CU_STATUS"/>
+                    <End EntitySet="CU_STATUS" Role="ToRole_MAINDATA_TO_CU_STATUS"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_DUPLICATEINFO"
+                                Association="ZCUSTOMER_SRV.MSG_HEADER_TO_DUPLICATEINFO" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_DUPLICATEINFO"/>
+                    <End EntitySet="CU_DUPLICATEINFO" Role="ToRole_MSG_HEADER_TO_DUPLICATEINFO"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_MESSAGES" Association="ZCUSTOMER_SRV.MSG_HEADER_TO_MESSAGES"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_MESSAGES"/>
+                    <End EntitySet="CU_MESSAGES" Role="ToRole_MSG_HEADER_TO_MESSAGES"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_MARKETINGACTION"
+                                Association="ZCUSTOMER_SRV.MSG_HEADER_TO_MARKETINGACTION" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_MARKETINGACTION"/>
+                    <End EntitySet="CU_MARKETINGACTION" Role="ToRole_MSG_HEADER_TO_MARKETINGACTION"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_MAINDATA" Association="ZCUSTOMER_SRV.MSG_HEADER_TO_MAINDATA"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_MAINDATA"/>
+                    <End EntitySet="CU_MAINDATA" Role="ToRole_MSG_HEADER_TO_MAINDATA"/>
+                </AssociationSet>
+                <AssociationSet Name="MAINDATA_TO_CUSTOMERKPI" Association="ZCUSTOMER_SRV.MAINDATA_TO_CUSTOMERKPI"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="CU_MAINDATA" Role="FromRole_MAINDATA_TO_CUSTOMERKPI"/>
+                    <End EntitySet="CU_CUSTOMERKPI" Role="ToRole_MAINDATA_TO_CUSTOMERKPI"/>
+                </AssociationSet>
+                <AssociationSet Name="MAINDATA_TO_COMMUNICATION_AssocSet"
+                                Association="ZCUSTOMER_SRV.MAINDATA_TO_COMMUNICATION" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CU_MAINDATA" Role="FromRole_MAINDATA_TO_COMMUNICATION"/>
+                    <End EntitySet="CU_COMMUNICATION" Role="ToRole_MAINDATA_TO_COMMUNICATION"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_PERMISSION" Association="ZCUSTOMER_SRV.MSG_HEADER_TO_PERMISSION"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_PERMISSION"/>
+                    <End EntitySet="CU_PERMISSIONS" Role="ToRole_MSG_HEADER_TO_PERMISSION"/>
+                </AssociationSet>
+                <AssociationSet Name="MAINDATA_TO_DUPLICATEINFO" Association="ZCUSTOMER_SRV.MAINDATA_TO_DUPLICATEINFO"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="CU_MAINDATA" Role="FromRole_MAINDATA_TO_DUPLICATEINFO"/>
+                    <End EntitySet="CU_DUPLICATEINFO" Role="ToRole_MAINDATA_TO_DUPLICATEINFO"/>
+                </AssociationSet>
+                <AssociationSet Name="MAINDATA_TO_MARKETINGACTION"
+                                Association="ZCUSTOMER_SRV.MAINDATA_TO_MARKETINGACTION" sap:creatable="false"
+                                sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CU_MAINDATA" Role="FromRole_MAINDATA_TO_MARKETINGACTION"/>
+                    <End EntitySet="CU_MARKETINGACTION" Role="ToRole_MAINDATA_TO_MARKETINGACTION"/>
+                </AssociationSet>
+                <AssociationSet Name="MSG_HEADER_TO_EXTERNALID" Association="ZCUSTOMER_SRV.MSG_HEADER_TO_EXTERNALID"
+                                sap:creatable="false" sap:updatable="false" sap:deletable="false"
+                                sap:content-version="1">
+                    <End EntitySet="MSG_HEADER" Role="FromRole_MSG_HEADER_TO_EXTERNALID"/>
+                    <End EntitySet="CU_EXTERNALID" Role="ToRole_MSG_HEADER_TO_EXTERNALID"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/$metadata"
+                       xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version"
+                       href="http://EBW.HEC.THOMASCOOK.COM:44300/sap/opu/odata/SAP/ZCUSTOMER_SRV/$metadata"
+                       xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

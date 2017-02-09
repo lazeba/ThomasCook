@@ -9,7 +9,7 @@
     },
     "general": {
       "bookingStatus": "Booked",
-      "bookingDate": "20160501",
+      "bookingDate": "2016-05-01",
       "departureDate": "18122016",
       "returnDate": "02012017",
       "destination": "",
@@ -183,9 +183,6 @@
         }
       ]
     },
-    "sourceSystem": "34",
-    "bookingNumber": "1223374",
-    "businessArea": "<NO TEXT>",
     "agent": {
       "shopCode": "Tour Vital Touristik GmbH"
     },

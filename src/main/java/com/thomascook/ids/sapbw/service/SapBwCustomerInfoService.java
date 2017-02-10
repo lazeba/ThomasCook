@@ -1,9 +1,5 @@
 package com.thomascook.ids.sapbw.service;
 
-import org.apache.olingo.odata2.api.edm.EdmException;
-import org.apache.olingo.odata2.api.ep.EntityProviderException;
-
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -15,8 +11,8 @@ public interface SapBwCustomerInfoService {
      * Method for retrieving customer information
      * according to provided customer number
      * @param customerNo - customer number provided by Sap Bw Booking service
-     * @param businessArea - //todo define how to map and where to get
-     * @return
+     * @param businessArea
+     * @return appropriate customer info or null in case of any problems
      */
-    Map<String, Object> getCustomerByKey(String customerNo, String businessArea) throws IOException, EntityProviderException, EdmException;
+    Map<String, Object> getCustomerByKey(String customerNo, String businessArea);
 }

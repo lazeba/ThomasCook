@@ -54,7 +54,7 @@ public class SapBwUriFactoryTest {
         String businessArea = "0";
         URI customerUri = uriFactory.getCustomerUri(customerNo, businessArea);
         assertNotNull(customerUri);
-        assertEquals("/MSG_HEADER(Requester='TST')/CU_MAINDATA(Customerno='" + customerNo + "',Businessarea='0')", customerUri.getPath().trim());
+        assertEquals("/MSG_HEADER(Requester='TST')/CU_MAINDATA(Customerno='" + customerNo + "',Businessarea='0')/$expand=CU_COMMUNICATION,CU_PERMISSION,CU_CUSTOMERKPI,CU_EXTERNALID,CU_PERMISSION,CU_PROFILE,CU_MARKETINGACTION", customerUri.getPath().trim());
     }
 
 }

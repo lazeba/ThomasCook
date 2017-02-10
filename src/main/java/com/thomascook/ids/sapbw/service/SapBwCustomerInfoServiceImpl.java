@@ -1,13 +1,12 @@
 package com.thomascook.ids.sapbw.service;
 
 import com.thomascook.ids.sapbw.client.ODataCommunicationClient;
-import org.apache.olingo.odata2.api.edm.EdmException;
-import org.apache.olingo.odata2.api.ep.EntityProviderException;
 import org.apache.olingo.odata2.api.ep.entry.ODataEntry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -17,6 +16,7 @@ import java.util.Map;
 
 @Component
 public class SapBwCustomerInfoServiceImpl implements SapBwCustomerInfoService {
+    static final Logger LOG = LoggerFactory.getLogger(SapBwCustomerInfoServiceImpl.class);
     private final ODataCommunicationClient oDataCommunicationClient;
 
     @Autowired
@@ -25,8 +25,13 @@ public class SapBwCustomerInfoServiceImpl implements SapBwCustomerInfoService {
     }
 
     @Override
-    public Map<String, Object> getCustomerByKey(String customerNo, String businessArea) throws IOException, EntityProviderException, EdmException {
-        ODataEntry customerEntry = oDataCommunicationClient.getCustomerEntry(customerNo, businessArea);
-        return customerEntry.getProperties();
+    public Map<String, Object> getCustomerByKey(String customerNo, String businessArea) {
+        try {
+            ODataEntry customerEntry = oDataCommunicationClient.getCustomerEntry(customerNo, businessArea);
+            return customerEntry.getProperties();
+        } catch (Exception e) {
+            LOG.warn("Error while finding customer with id {} failed with ", customerNo, e);
+            return null;
+        }
     }
 }

@@ -2,8 +2,8 @@ Feature: SapBw microservice
 
   Scenario Outline: SapBw microservice enriches canonical message
 
-    Given SapBw mock responds with status 200 and body /ZBOOKING_SRV_metadata.xml for metadata
-    And SapBw mock responds with status 200 and body /BOOKING('12233742016050133').xml for booking key <BOOKING_KEY> and:
+    Given SapBw mock responds with status 200 and body /odata-output/ZBOOKING_SRV_metadata.xml for metadata
+    And SapBw mock responds with status 200 and body /odata-output/BOOKING('12233742016050133').xml for booking key <BOOKING_KEY> and:
       | //d:Bookingno | <BOOKING_ID> |
     And SapBw mock responds with status 200 and body /odata-output/sapbw-customer-metadata.xml for customer metadata
     And SapBw mock responds with status 200 and body /odata-output/sapbw-customer-content.xml for customer key <CUSTOMER_KEY> and business area 0 and:

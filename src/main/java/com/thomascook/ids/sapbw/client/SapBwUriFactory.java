@@ -15,6 +15,7 @@ public class SapBwUriFactory {
     private static final String MSG_HEADER = "MSG_HEADER(Requester='TST')";
     private static final String CUSTOMER_SERVICE_MAINDATA_TEMPLATE = "CU_MAINDATA(Customerno='%s',Businessarea='%s')";
     private static final String BOOKING_SERVICE_MAINDATA_TEMPLATE = "BOOKING('%s')";
+    private static final String CONCATENATING_RELATIONS = "$expand=CU_COMMUNICATION,CU_PERMISSION,CU_CUSTOMERKPI,CU_EXTERNALID,CU_PERMISSION,CU_PROFILE,CU_MARKETINGACTION";
 
     private final String bookingUrl;
     private final String customerUrl; //todo clarify - define - format of link - is same for booking service
@@ -49,6 +50,7 @@ public class SapBwUriFactory {
     public URI getCustomerUri(String customerNo, String businessArea) {
         return UriComponentsBuilder.fromHttpUrl(customerUrl)
                 .pathSegment(MSG_HEADER, String.format(CUSTOMER_SERVICE_MAINDATA_TEMPLATE, customerNo, businessArea))
+                .path(CONCATENATING_RELATIONS)
                 .build()
                 .toUri();
     }

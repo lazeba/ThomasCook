@@ -39,8 +39,8 @@ import static org.mockito.Mockito.*;
 public class ODataCommunicationClientTest {
 
     static final String CUSTOMER_BK_PROPERTY = "CustomerBk";
-    static final String PATH_TO_BOOKING_METADATA = "ZBOOKING_SRV_metadata.xml";
-    static final String PATH_TO_BOOKING_CONTENT = "BOOKING('12233742016050133').xml";
+    static final String PATH_TO_BOOKING_METADATA = "odata-output/ZBOOKING_SRV_metadata.xml";
+    static final String PATH_TO_BOOKING_CONTENT = "odata-output/BOOKING('12233742016050133').xml";
     static final String PATH_TO_CUSTOMER_RESPONSE = "/odata-output/sapbw-customer-content.xml";
     static final String PATH_TO_CUSTOMER_METADATA = "/odata-output/sapbw-customer-metadata.xml";
 

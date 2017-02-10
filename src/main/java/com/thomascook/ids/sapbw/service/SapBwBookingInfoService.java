@@ -1,9 +1,5 @@
 package com.thomascook.ids.sapbw.service;
 
-import org.apache.olingo.odata2.api.edm.EdmException;
-import org.apache.olingo.odata2.api.ep.EntityProviderException;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -13,5 +9,15 @@ import java.util.Map;
  */
 public interface SapBwBookingInfoService {
 
-    Map<String, Object> getBookingByKey(String bookingId, LocalDate bookingDate, String sourceSystemCode) throws EntityProviderException, EdmException, IOException;
+    /**
+     * @param bookingId
+     * @param bookingDate
+     * @param sourceSystemCode
+     * @return appropriate booking info or null in case of any problems
+     */
+    Map<String, Object> getBookingByKey(String bookingId, LocalDate bookingDate, String sourceSystemCode);
+
+    String resolveCustomerNumber(Map<String, Object> bookingInfo);
+
+    String resolveBusinessArea(Map<String, Object> bookingInfo);
 }

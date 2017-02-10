@@ -40,7 +40,7 @@ public class ODataCommunicationClientTest {
 
     public static final String CUSTOMER_BK_PROPERTY = "CustomerBk";
     String PATH_TO_BOOKING_METADATA = "ZBOOKING_SRV_metadata.xml";
-    String PATH_TO_BOOKING_CONTENT = "BOOKING('12233742016050133').xml";
+    String PATH_TO_BOOKING_CONTENT = "BOOKING_SS33('12233742016050133').xml";
 
     private ODataCommunicationClient oDataCommunicationClient;
 

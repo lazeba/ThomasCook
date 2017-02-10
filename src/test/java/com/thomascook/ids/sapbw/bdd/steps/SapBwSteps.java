@@ -32,6 +32,8 @@ import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 import org.mockserver.model.StringBody;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.net.URI;
@@ -48,6 +50,8 @@ import static org.mockserver.integration.ClientAndServer.startClientAndServer;
  * Created by rdro-tc on 30.05.16.
  */
 public class SapBwSteps {
+
+    private static final Logger LOG = LoggerFactory.getLogger(SapBwSteps.class);
 
     private final static Map<String, String> SAPBW_NAMESPACES = ImmutableMap.of(
         "m", "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata",
@@ -97,12 +101,15 @@ public class SapBwSteps {
             this.server.stop(true);
         }
 
+        if(msbContext != null) {
+            msbContext.shutdown();
+        }
+
         if (msContext != null && msContext.isRunning()) {
             msContext.stop();
         }
 
         lastOutMessage = Optional.empty();
-        outMessages.clear();
     }
 
     @When("^Booking message (\\S+) has been sent for booking (\\S+) with:$")
